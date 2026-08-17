@@ -58,9 +58,27 @@ bauen (Format/Ton siehe die bereits im Repo liegende Version als Vorlage - Sparp
 Spalten fuer alle drei Kapital-Punkte, Hinweis dass sich bei so kleinen Betraegen pro Position ein
 echter monatlicher Sparplan beim Broker eher eignet als Einzelkaeufe). Danach in
 `reports/Performance-Tracking.md` fuer jeden Titel eine neue Log-Zeile ergaenzen (Datum, Score, Kurs).
+
+**Weltlage-Recherche (fest eingebaut seit 17.08.2026):** zusaetzlich einmal per WebSearch eine
+allgemeine Frage recherchieren (z.B. "Weltwirtschaft Aktienmarkt Nachrichten Geopolitik Woche [aktuelles
+Datum]") und das Ergebnis als 3-5 Saetze in `script/letzte_recherche.json` unter dem Top-Level-Feld
+`"weltlage_notiz"` ablegen (String, kein Ticker-spezifisches Feld). Wird im Dashboard als eigene Karte
+"🌍 Weltlage / Makro-Einordnung" angezeigt.
+
+**Swing-Kandidaten-Ausblick (fest eingebaut seit 17.08.2026):** nachdem der Score final berechnet ist,
+identifizieren welche Titel Swing-Kandidaten sind (>= 10% unter 52-Wochen-Hoch UND Score >= 50 - siehe
+`SWING_MIN_ABSTAND_VOM_HOCH_PCT`/`SWING_MIN_SCORE` in `script/html_dashboard.py`). Fuer JEDEN dieser
+Kandidaten eine gezielte WebSearch nach "[Firmenname] Aktie Ausblick nächste Wochen [relevantes Thema]"
+machen und 2-4 Saetze mit echtem, aktuellem Kontext (nicht nur die Zahlen wiederholen: konkrete
+Katalysatoren, Termine, Risiken fuer die naechsten Wochen) in `script/letzte_recherche.json` unter
+`metriken.swing_ausblick` (String) fuer den jeweiligen Ticker ablegen. Wird im Dashboard direkt unter
+jedem Swing-Kandidaten angezeigt. Falls das Feld fehlt, zeigt das Dashboard automatisch einen
+Platzhalter-Hinweis - lieber leer lassen als etwas erfinden.
+
 Zum Schluss: `python3 script/html_dashboard.py --in script/letzte_recherche.json --market
 script/market.json --portfolio reports/portfolio.json --out reports/Dashboard.html` (das
-selbst-enthaltene HTML-Dashboard mit Charts, wird lokal im Browser geoeffnet, nicht in Obsidian).
+selbst-enthaltene HTML-Dashboard mit Charts, wird lokal im Browser geoeffnet, nicht in Obsidian) -
+zeigt automatisch die Weltlage-Karte und die Swing-Ausblicke an, wenn die Felder oben befuellt wurden.
 
 ## Score-Formel
 

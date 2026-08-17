@@ -173,9 +173,12 @@ def build_stat_tiles(market):
 
 
 def build_swing_table(titel_list):
-    """Eigene, prominente Tabelle nur der Swing-Kandidaten (spuerbar unter
-    52-Wochen-Hoch UND fundamental weiter solide) - sortiert nach Score, damit
-    die qualitativ staerksten Dip-Kandidaten oben stehen."""
+    """Eigene, prominente Sektion nur der Swing-Kandidaten (spuerbar unter
+    52-Wochen-Hoch UND fundamental weiter solide) - sortiert nach Score. Jeder
+    Kandidat bekommt eine Kopfzeile mit Kennzahlen PLUS (falls recherchiert,
+    Feld 'swing_ausblick' in metriken) einen echten Wochen-Ausblick-Absatz -
+    nicht nur die nackte Zahl, sondern warum der Titel in den naechsten Wochen
+    interessant sein koennte."""
     kandidaten = []
     for t in titel_list:
         m = t["metriken"]
@@ -189,26 +192,32 @@ def build_swing_table(titel_list):
         return None
 
     kandidaten.sort(key=lambda pair: -pair[0]["score"])
-    rows = []
+    blocks = []
     for t, abstand in kandidaten:
         m = t["metriken"]
         band = score_band(t["score"])
         color = STATUS[band]
         preis_str = f"{m['preis']:.2f} {esc(m.get('waehrung') or '')}" if m.get("preis") is not None else "k.A."
         hoch_str = f"{m['52w_hoch']:.2f}" if m.get("52w_hoch") is not None else "k.A."
-        earnings = esc(m.get("naechste_earnings_datum")) or "-"
-        rows.append(f'''
-        <tr>
-          <td><strong>{esc(t["ticker"])}</strong></td>
-          <td>{esc(m.get("name"))}</td>
-          <td><span class="score-dot" style="background:{color}"></span>{t["score"]:.1f}</td>
-          <td>{preis_str}</td>
-          <td class="swing-neg">{abstand:.1f}%</td>
-          <td>{hoch_str}</td>
-          <td>{esc(t.get("cluster") or "-")}</td>
-          <td>{earnings}</td>
-        </tr>''')
-    return "\n".join(rows), len(kandidaten)
+        earnings = esc(m.get("naechste_earnings_datum")) or "kein Termin bekannt"
+        ausblick = m.get("swing_ausblick")
+        ausblick_html = (
+            f'<p class="swing-ausblick">{esc(ausblick)}</p>'
+            if ausblick else
+            '<p class="swing-ausblick swing-ausblick-fehlt">Noch kein recherchierter Wochen-Ausblick '
+            'für diesen Titel - nur das automatische Zahlen-Signal.</p>'
+        )
+        blocks.append(f'''
+      <div class="swing-item">
+        <div class="swing-item-head">
+          <strong>{esc(t["ticker"])}</strong> · {esc(m.get("name"))}
+          <span class="score-dot" style="background:{color}"></span>Score {t["score"]:.1f}
+          · {preis_str} <span class="swing-neg">({abstand:.1f}% vom Hoch bei {hoch_str})</span>
+          · Nächste Zahlen: {earnings}
+        </div>
+        {ausblick_html}
+      </div>''')
+    return "\n".join(blocks), len(kandidaten)
 
 
 def build_table_rows(titel_list):
@@ -356,6 +365,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .swing-card {{ border-left: 3px solid #fab219; }}
   .swing-neg {{ color: #d03b3b; font-weight: 600; }}
   .swing-empty {{ color: var(--text-muted); font-size: 13px; }}
+  .swing-item {{ padding: 12px 0; border-bottom: 1px solid var(--grid); }}
+  .swing-item:last-child {{ border-bottom: none; padding-bottom: 0; }}
+  .swing-item-head {{ font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }}
+  .swing-item-head strong {{ color: var(--text-primary); font-size: 14px; }}
+  .swing-ausblick {{ font-size: 13px; color: var(--text-primary); line-height: 1.5; margin: 0; }}
+  .swing-ausblick-fehlt {{ color: var(--text-muted); font-style: italic; }}
+  .weltlage-text {{ font-size: 13px; color: var(--text-primary); line-height: 1.6; margin: 0; }}
   footer {{ color: var(--text-muted); font-size: 12px; text-align: center; margin-top: 24px; }}
 </style>
 </head>
@@ -394,6 +410,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   </div>
 
   {swing_card}
+
+  {weltlage_card}
 
   {portfolio_card}
 
@@ -476,24 +494,20 @@ def build(data, market=None, portfolio=None):
 
     swing_result = build_swing_table(titel_list)
     if swing_result:
-        swing_rows, swing_count = swing_result
+        swing_blocks, swing_count = swing_result
         swing_card = f'''
   <div class="card swing-card">
-    <h2>🟡 Swing-Kandidaten ({swing_count}) — ≥10% unter 52-Wochen-Hoch, Score ≥ 50</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Ticker</th><th>Name</th><th>Score</th><th>Kurs</th>
-          <th>Abstand 52W-Hoch</th><th>52W-Hoch</th><th>Cluster</th><th>Nächste Zahlen</th>
-        </tr>
-      </thead>
-      <tbody>
-        {swing_rows}
-      </tbody>
-    </table>
+    <h2>🟡 Swing-Kandidaten ({swing_count}) — ≥10% unter 52-Wochen-Hoch, Score ≥ 50, Ausblick für die nächsten Wochen</h2>
+    {swing_blocks}
   </div>'''
     else:
         swing_card = '<div class="card swing-card"><h2>🟡 Swing-Kandidaten</h2><div class="swing-empty">Aktuell kein Titel, der gleichzeitig ≥10% unter seinem 52-Wochen-Hoch UND fundamental solide (Score ≥ 50) ist.</div></div>'
+
+    weltlage = data.get("weltlage_notiz")
+    weltlage_html = (
+        f'<div class="card"><h2>🌍 Weltlage / Makro-Einordnung</h2><p class="weltlage-text">{esc(weltlage)}</p></div>'
+        if weltlage else ""
+    )
 
     html = HTML_TEMPLATE.format(
         erzeugt_am=esc(data.get("erzeugt_am", "k.A.")),
@@ -504,6 +518,7 @@ def build(data, market=None, portfolio=None):
         donut_segments=donut_segments,
         donut_legend=donut_legend,
         swing_card=swing_card,
+        weltlage_card=weltlage_html,
         portfolio_card=portfolio_card,
         table_rows=build_table_rows(titel_list),
     )

@@ -86,7 +86,8 @@
         "kurs_50t": 413.82,
         "kurs_200t": 431.02,
         "52w_hoch": 538.66,
-        "52w_tief": 352.83
+        "52w_tief": 352.83,
+        "swing_ausblick": "Kursrücksetzer trotz starkem Azure-Ausblick (+45% erwartet für Q1 GJ2027), Sorge gilt den hohen KI-Investitionen (175 Mrd. USD 2026). Analysten-Kursziel impliziert noch ca. 42% Luft nach oben. Katalysator in den nächsten Wochen: Vorstellung des eigenen KI-Chips Maia 300 im September."
       },
       "score": 63.3,
       "subscores": {
@@ -130,7 +131,8 @@
         "kurs_50t": 353.33,
         "kurs_200t": 331.49,
         "52w_hoch": 402.38,
-        "52w_tief": 198.75
+        "52w_tief": 198.75,
+        "swing_ausblick": "Rekordzahlen bei Google Cloud (+82% YoY, Auftragsbestand 514 Mrd. USD, erstmals positives EBITDA), aber Kartellverfahren um die Anzeigenbörse (mögliche Zwangsabspaltung) belastet. Nächster Prüfstein: Q3-Zahlen im Oktober, dann zeigt sich ob Effizienz die KI-Kosten ausgleicht."
       },
       "score": 69.1,
       "subscores": {
@@ -262,7 +264,8 @@
         "kurs_50t": 389.81,
         "kurs_200t": 368.33,
         "52w_hoch": 480.77,
-        "52w_tief": 287.47
+        "52w_tief": 287.47,
+        "swing_ausblick": "Q3-Zahlen am 02.09. sind der nächste große Katalysator - Frage ist ob die Marke von 500 USD fällt. KI-Chip-Umsatz zuletzt +143% YoY, aber hohe Erwartungen sind bereits eingepreist, entsprechend anfällig für Enttäuschungen."
       },
       "score": 50.9,
       "subscores": {
@@ -306,7 +309,8 @@
         "kurs_50t": 510.06,
         "kurs_200t": 325.57,
         "52w_hoch": 580.91,
-        "52w_tief": 151.14
+        "52w_tief": 151.14,
+        "swing_ausblick": "Konferenz 'Advancing AI 2026' in den kommenden Wochen zeigt, ob milliardenschwere Zusagen an Meta, OpenAI und Microsoft zu echter, lieferbarer Hardware werden. Hohes Forward-KGV macht die Aktie anfällig für Rücksetzer bei jeder Verzögerung."
       },
       "score": 59.3,
       "subscores": {
@@ -350,7 +354,8 @@
         "kurs_50t": 960.97,
         "kurs_200t": 556.39,
         "52w_hoch": 1213.37,
-        "52w_tief": 115.6
+        "52w_tief": 115.6,
+        "swing_ausblick": "HBM-Speicher bereits bis Ende 2026 ausverkauft, Nachfrage übersteigt Angebot um geschätzt 50-67%. Nächste Zahlen am 22.09. Höchster Score der gesamten Watchlist bei gleichzeitig deutlichem Kursrücksetzer - genau die Kombination, für die dieses Tool gebaut wurde."
       },
       "score": 92.5,
       "subscores": {
@@ -438,7 +443,8 @@
         "kurs_50t": 135.6,
         "kurs_200t": 152.01,
         "52w_hoch": 207.18,
-        "52w_tief": 107.27
+        "52w_tief": 107.27,
+        "swing_ausblick": "Rekordquartal, Jahresprognose auf +82% Umsatzwachstum angehoben. Nächster Prüfstein: Q3-Umsatzspanne von 2,16-2,164 Mrd. USD - wird sie eingehalten, dürfte die Bewertungsdiskussion in den Hintergrund treten, sonst drohen scharfe Korrekturen."
       },
       "score": 57.7,
       "subscores": {
@@ -482,7 +488,8 @@
         "kurs_50t": 72.31,
         "kurs_200t": 77.49,
         "52w_hoch": 100.1,
-        "52w_tief": 65.94
+        "52w_tief": 65.94,
+        "swing_ausblick": "Schwacher eigener Ausblick löste den Kursrutsch aus. Analysten sehen trotzdem deutliches Aufholpotenzial - der Konsens-Kursziel liegt klar über dem aktuellen Kurs. Volatiler Titel, kein Selbstläufer."
       },
       "score": 51.1,
       "subscores": {
@@ -614,7 +621,8 @@
         "kurs_50t": 543.9,
         "kurs_200t": 546.48,
         "52w_hoch": 672.3,
-        "52w_tief": 429.05
+        "52w_tief": 429.05,
+        "swing_ausblick": "Rekordauftragsbestand (230 Mrd. USD), Jahresprognose bereits angehoben (Umsatz +8%, operatives Ergebnis +28%). Nächster Berichtstermin 21.10. Einer der visibelsten/planbarsten Titel im Rüstungscluster."
       },
       "score": 60.6,
       "subscores": {
@@ -704,7 +712,8 @@
         "kurs_200t": 168.56,
         "52w_hoch": 237.96,
         "52w_tief": 128.32,
-        "notiz_recherche": "Kursziel 242,92 $ war USD-ADR-Wert (NYSE), passt nicht zur EUR-Xetra-Notierung - nicht uebernommen."
+        "notiz_recherche": "Kursziel 242,92 $ war USD-ADR-Wert (NYSE), passt nicht zur EUR-Xetra-Notierung - nicht uebernommen.",
+        "swing_ausblick": "Nach starker Erholung (+30% in vier Wochen) weiter solides Cloud-Wachstum (+24%), aber die operative Gewinnprognose wurde wegen KI-Investitionen gesenkt. Nächster Prüfstein: Q3-Zahlen, die zeigen ob die Prognosekorrektur einmalig war oder sich fortsetzt."
       },
       "score": 58.5,
       "subscores": {
@@ -794,7 +803,8 @@
         "kurs_200t": 522.56,
         "52w_hoch": 641.64,
         "52w_tief": 444.95,
-        "notiz_recherche": "Kursziel-Spanne in Quellen 439-825 EUR, 586,85 EUR als genannter Durchschnitt verwendet. Kein sauberer Umsatzwachstum-Prozentwert gefunden."
+        "notiz_recherche": "Kursziel-Spanne in Quellen 439-825 EUR, 586,85 EUR als genannter Durchschnitt verwendet. Kein sauberer Umsatzwachstum-Prozentwert gefunden.",
+        "swing_ausblick": "Hängt stark an der China-Erholung im Luxussegment, aktuell zeigt sich eine leichte Stabilisierung. Volatilität dürfte bei neuen China-Konjunktursignalen wieder zunehmen - kein Titel für Nerven-Ruhe in den nächsten Wochen."
       },
       "score": 53.0,
       "subscores": {
@@ -1244,7 +1254,8 @@
         "kurs_200t": 1428.35,
         "52w_hoch": 1968.82,
         "52w_tief": 946.6,
-        "notiz_recherche": "Kursziel-Spannen extrem breit (1600-2300 EUR je nach Analyst) - Konsens-Mitte ~1700 EUR gewaehlt. Umsatzwachstum-Guidance 40-45% (Konzern) vs. 25-30% (konservativere Analysten) - Konzern-Guidance-Mitte gewaehlt. Naechster Quartalsbericht nicht klar recherchiert (letzter war 06.08.2026); zusaetzlich relevant fuer die Aktie: Bundestag-Entscheidung zu 'Arminius' am 09.12.2026."
+        "notiz_recherche": "Kursziel-Spannen extrem breit (1600-2300 EUR je nach Analyst) - Konsens-Mitte ~1700 EUR gewaehlt. Umsatzwachstum-Guidance 40-45% (Konzern) vs. 25-30% (konservativere Analysten) - Konzern-Guidance-Mitte gewaehlt. Naechster Quartalsbericht nicht klar recherchiert (letzter war 06.08.2026); zusaetzlich relevant fuer die Aktie: Bundestag-Entscheidung zu 'Arminius' am 09.12.2026.",
+        "swing_ausblick": "Kurs seit Herbst-Hoch über 50% korrigiert, trotz Rekord-Auftragsbestand (73 Mrd. EUR, +31%) und Umsatzguidance von bis zu +45% für 2026. Viele Analysten werten die Korrektur als Konsolidierung, nicht als Trendbruch - Kursziele liegen mit rund 1.700 EUR deutlich über dem aktuellen Niveau."
       },
       "score": 64.1,
       "subscores": {
@@ -1391,6 +1402,7 @@
     }
   ],
   "recherchiert_am": "2026-08-17T21:00:00",
-  "neu_bewertet_am": "2026-08-17T22:47:43",
-  "kurse_aktualisiert_am": "2026-08-17T22:47:43"
+  "neu_bewertet_am": "2026-08-17T22:51:35",
+  "kurse_aktualisiert_am": "2026-08-17T22:51:35",
+  "weltlage_notiz": "Geopolitisches Risiko bleibt laut aktueller Recherche (17.08.2026) die dominante Variable fuer Anlegerverhalten: Iran-Konflikt (Oelpreis-Risiko rund um die Straße von Hormus, zuletzt entspannt), eingefahrener US-China-Handelskonflikt, wachsende politische Instabilitaet in Europa. Umfeld fuer risikobehaftete Anlagen bleibt trotzdem grundsaetzlich konstruktiv (verbesserte globale Wachstumsindikatoren), erfordert aber differenzierte Einordnung wegen Inflation, Geopolitik und Klimarisiken zusammen."
 }
