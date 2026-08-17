@@ -1,0 +1,218 @@
+# Watchlist für das Aktien Recherche Tool
+# Diese Datei ist frei editierbar: Zeilen hinzufügen/löschen/anpassen und speichern reicht.
+#
+# Feld "eodhd_symbol": Ticker + EODHD-Börsen-Suffix im Format TICKER.EXCHANGE
+# (z.B. AAPL.US, SAP.XETRA). Stand 17.08.2026 gegen die ECHTE EODHD-API getestet
+# (voller Lauf über alle 31 Titel, siehe Projektnotiz "Status"): 30 von 31 Symbolen
+# funktionieren direkt. Einzige Korrektur: Leonardo S.p.A. hat keine direkte
+# Mailand-Notierung (LDO.MI) bei EODHD - stattdessen 0ONG.LSE (Londoner Notierung
+# derselben Aktie, gleiche ISIN) verwendet, siehe Notiz beim Eintrag unten.
+#
+# Feld "cluster": frei genutzt für den Abschnitt "Diese Woche im Fokus" im Report,
+# um thematisch/wertschöpfungskettenmäßig verbundene Titel zu gruppieren.
+
+watchlist:
+  # --- US (14) ---
+  - ticker: NVDA
+    eodhd_symbol: NVDA.US
+    name: Nvidia
+    region: US
+    sektor: KI-Chips / Halbleiter
+    cluster: chip-lieferkette-nvidia
+
+  - ticker: MSFT
+    eodhd_symbol: MSFT.US
+    name: Microsoft
+    region: US
+    sektor: Cloud / Software / KI
+
+  - ticker: GOOGL
+    eodhd_symbol: GOOGL.US
+    name: Alphabet
+    region: US
+    sektor: Suche / Cloud / KI
+
+  - ticker: AMZN
+    eodhd_symbol: AMZN.US
+    name: Amazon
+    region: US
+    sektor: E-Commerce / Cloud
+
+  - ticker: META
+    eodhd_symbol: META.US
+    name: Meta Platforms
+    region: US
+    sektor: Werbung / KI
+
+  - ticker: AVGO
+    eodhd_symbol: AVGO.US
+    name: Broadcom
+    region: US
+    sektor: KI-Infrastruktur / Halbleiter
+    cluster: chip-lieferkette-nvidia
+
+  - ticker: AMD
+    eodhd_symbol: AMD.US
+    name: Advanced Micro Devices
+    region: US
+    sektor: Halbleiter / KI-Chips
+    cluster: chip-lieferkette-nvidia
+
+  - ticker: MU
+    eodhd_symbol: MU.US
+    name: Micron Technology
+    region: US
+    sektor: Speicherchips (HBM für KI-Beschleuniger)
+    cluster: chip-lieferkette-nvidia
+    notiz: "Explizit auf Wunsch aufgenommen, eng an NVDA-Zyklus gekoppelt (HBM-Speicher)."
+
+  - ticker: LLY
+    eodhd_symbol: LLY.US
+    name: Eli Lilly
+    region: US
+    sektor: Pharma / Diabetes-Adipositas
+
+  - ticker: PLTR
+    eodhd_symbol: PLTR.US
+    name: Palantir Technologies
+    region: US
+    sektor: KI-Software / Analytics
+
+  - ticker: UBER
+    eodhd_symbol: UBER.US
+    name: Uber Technologies
+    region: US
+    sektor: Plattform / Mobility
+
+  - ticker: V
+    eodhd_symbol: V.US
+    name: Visa
+    region: US
+    sektor: Zahlungsverkehr
+
+  - ticker: COST
+    eodhd_symbol: COST.US
+    name: Costco Wholesale
+    region: US
+    sektor: Einzelhandel
+
+  - ticker: LMT
+    eodhd_symbol: LMT.US
+    name: Lockheed Martin
+    region: US
+    sektor: Rüstung / Luft- und Raumfahrt
+    cluster: ruestung
+
+  # --- EU (13, inkl. 2 nachtraeglich ergaenzter Titel fuer Sektor-Diversifizierung) ---
+  - ticker: ASML
+    eodhd_symbol: ASML.AS
+    name: ASML Holding
+    region: EU (Niederlande)
+    sektor: Halbleiter-Lithografie
+    cluster: chip-lieferkette-nvidia
+
+  - ticker: SAP
+    eodhd_symbol: SAP.XETRA
+    name: SAP
+    region: EU (Deutschland)
+    sektor: Unternehmenssoftware / Cloud
+
+  - ticker: NOVO-B
+    eodhd_symbol: NOVO-B.CO
+    name: Novo Nordisk
+    region: EU (Dänemark)
+    sektor: Pharma / Diabetes-Adipositas
+
+  - ticker: MC
+    eodhd_symbol: MC.PA
+    name: LVMH
+    region: EU (Frankreich)
+    sektor: Luxusgüter
+
+  - ticker: RMS
+    eodhd_symbol: RMS.PA
+    name: Hermès
+    region: EU (Frankreich)
+    sektor: Luxusgüter
+
+  - ticker: ENR
+    eodhd_symbol: ENR.XETRA
+    name: Siemens Energy
+    region: EU (Deutschland)
+    sektor: Energiewende / Netzinfrastruktur
+
+  - ticker: SU
+    eodhd_symbol: SU.PA
+    name: Schneider Electric
+    region: EU (Frankreich)
+    sektor: Elektrifizierung / Energieeffizienz
+
+  - ticker: IFX
+    eodhd_symbol: IFX.XETRA
+    name: Infineon Technologies
+    region: EU (Deutschland)
+    sektor: Halbleiter / Automotive
+    cluster: chip-lieferkette-nvidia
+
+  - ticker: NOVN
+    eodhd_symbol: NOVN.SW
+    name: Novartis
+    region: EU (Schweiz)
+    sektor: Pharma
+
+  - ticker: SRT3
+    eodhd_symbol: SRT3.XETRA
+    name: Sartorius
+    region: EU (Deutschland)
+    sektor: Life-Science-Ausrüstung
+
+  - ticker: AIR
+    eodhd_symbol: AIR.PA
+    name: Airbus
+    region: EU (Frankreich)
+    sektor: Luft- und Raumfahrt
+
+  - ticker: ALV
+    eodhd_symbol: ALV.XETRA
+    name: Allianz
+    region: EU (Deutschland)
+    sektor: Finanzen / Versicherung
+    notiz: "Nachtraeglich ergaenzt fuer Sektor-Diversifizierung (Finanzen fehlte komplett)."
+
+  - ticker: IBE
+    eodhd_symbol: IBE.MC
+    name: Iberdrola
+    region: EU (Spanien)
+    sektor: Energiewende / Erneuerbare Energien / Versorger
+    notiz: "Nachtraeglich ergaenzt fuer Sektor-Diversifizierung (Erneuerbare/Versorger fehlte komplett)."
+
+  # --- Rüstung / Defense-Cluster (4) ---
+  - ticker: RHM
+    eodhd_symbol: RHM.XETRA
+    name: Rheinmetall
+    region: EU (Deutschland)
+    sektor: Rüstung
+    cluster: ruestung
+    notiz: "Wegen aktueller Weltlage bewusst als eigenes Beobachtungsthema."
+
+  - ticker: LDO
+    eodhd_symbol: 0ONG.LSE
+    name: Leonardo S.p.A.
+    region: EU (Italien)
+    sektor: Rüstung / Luft- und Raumfahrt
+    cluster: ruestung
+    notiz: "EODHD hat keine direkte Mailand-Notierung (LDO.MI) im Angebot - 0ONG.LSE ist die Londoner Notierung derselben Aktie (gleiche ISIN IT0003856405), am 17.08.2026 per EODHD-Suche verifiziert."
+
+  - ticker: HO
+    eodhd_symbol: HO.PA
+    name: Thales
+    region: EU (Frankreich)
+    sektor: Rüstung / Sicherheitstechnik
+    cluster: ruestung
+
+  - ticker: RTX
+    eodhd_symbol: RTX.US
+    name: RTX Corp (Raytheon)
+    region: US
+    sektor: Rüstung / Luft- und Raumfahrt
+    cluster: ruestung
