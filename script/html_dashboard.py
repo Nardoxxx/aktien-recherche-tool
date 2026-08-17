@@ -19,6 +19,7 @@ Nutzung:
 
 import argparse
 import json
+import os
 from datetime import datetime
 
 STATUS = {
@@ -170,6 +171,69 @@ def build_stat_tiles(market):
         <div class="stat-delta {delta_class}">{esc(sub)}</div>
       </div>''')
     return "\n".join(tiles)
+
+
+def check_ipo_alerts(ipo_radar, history_path):
+    """Vergleicht den aktuellen IPO-Radar-Stand mit dem zuletzt gespeicherten
+    (history_path, ein einfaches JSON: {name: {termin, status}}). Aendert sich
+    Termin oder Status eines bereits bekannten Kandidaten, wird ein Alert
+    erzeugt. Neue Kandidaten (erstmals im Radar) loesen KEINEN Alert aus -
+    sonst wuerde der allererste Lauf faelschlich "Alarm" schlagen, obwohl es
+    nur die Erstbefuellung ist. Schreibt danach den neuen Stand zurueck."""
+    if not ipo_radar:
+        return []
+
+    history = {}
+    if os.path.exists(history_path):
+        try:
+            with open(history_path, "r", encoding="utf-8") as f:
+                history = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            history = {}
+
+    alerts = []
+    new_history = {}
+    for ipo in ipo_radar:
+        name = ipo.get("name")
+        if not name:
+            continue
+        neu = {"termin": ipo.get("termin"), "status": ipo.get("status")}
+        alt = history.get(name)
+        if alt and (alt.get("termin") != neu["termin"] or alt.get("status") != neu["status"]):
+            alerts.append({
+                "name": name,
+                "alt_termin": alt.get("termin"),
+                "neu_termin": neu["termin"],
+                "alt_status": alt.get("status"),
+                "neu_status": neu["status"],
+            })
+        new_history[name] = neu
+
+    try:
+        with open(history_path, "w", encoding="utf-8") as f:
+            json.dump(new_history, f, ensure_ascii=False, indent=2)
+    except OSError:
+        pass
+
+    return alerts
+
+
+def build_ipo_alert_banner(alerts):
+    if not alerts:
+        return ""
+    items = []
+    for a in alerts:
+        teile = []
+        if a["alt_termin"] != a["neu_termin"]:
+            teile.append(f'Termin: "{esc(a["alt_termin"])}" → <strong>"{esc(a["neu_termin"])}"</strong>')
+        if a["alt_status"] != a["neu_status"]:
+            teile.append(f'Status: "{esc(a["alt_status"])}" → <strong>"{esc(a["neu_status"])}"</strong>')
+        items.append(f'<li><strong>{esc(a["name"])}</strong>: {" · ".join(teile)}</li>')
+    return f'''
+  <div class="card alert-card">
+    <h2>🔔 IPO-Update seit letztem Lauf</h2>
+    <ul class="alert-list">{"".join(items)}</ul>
+  </div>'''
 
 
 def build_ipo_radar(ipo_radar):
@@ -355,6 +419,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     background: var(--surface-1); border: 1px solid var(--border); border-left: 3px solid #fab219;
     padding: 10px 14px; border-radius: 6px; font-size: 13px; color: var(--text-secondary); margin: 16px 0 24px;
   }}
+  .alert-card {{ border-left: 3px solid var(--cat-1); }}
+  .alert-list {{ margin: 0; padding-left: 20px; font-size: 13px; color: var(--text-primary); line-height: 1.6; }}
   .card {{
     background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
     padding: 20px; margin-bottom: 20px;
@@ -418,6 +484,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <div class="meta">Erzeugt: {erzeugt_am} · Modus: {modus}</div>
 
   <div class="disclaimer">⚠️ Keine Anlageberatung — rein mathematische Kennzahlen-Einordnung auf Basis der EODHD-Free-Tier-Daten und Web-Recherche. Alle Scores sind relative Einordnung innerhalb dieser Watchlist.</div>
+
+  {ipo_alert_banner}
 
   <div class="card">
     <h2>Marktüberblick</h2>
@@ -508,7 +576,7 @@ function sortTable(col) {{
 """
 
 
-def build(data, market=None, portfolio=None):
+def build(data, market=None, portfolio=None, ipo_history_path=None):
     titel_list = data.get("titel", [])
     stat_tiles = build_stat_tiles(market)
     score_bars = build_score_bars(titel_list)
@@ -551,6 +619,11 @@ def build(data, market=None, portfolio=None):
         if ipo_blocks else ""
     )
 
+    ipo_alerts = []
+    if ipo_history_path and data.get("ipo_radar"):
+        ipo_alerts = check_ipo_alerts(data["ipo_radar"], ipo_history_path)
+    ipo_alert_banner = build_ipo_alert_banner(ipo_alerts)
+
     html = HTML_TEMPLATE.format(
         erzeugt_am=esc(data.get("erzeugt_am", "k.A.")),
         modus=esc(data.get("modus", "k.A.")),
@@ -562,6 +635,7 @@ def build(data, market=None, portfolio=None):
         swing_card=swing_card,
         weltlage_card=weltlage_html,
         ipo_card=ipo_card,
+        ipo_alert_banner=ipo_alert_banner,
         portfolio_card=portfolio_card,
         table_rows=build_table_rows(titel_list),
     )
@@ -573,6 +647,8 @@ def main():
     parser.add_argument("--in", dest="in_path", required=True)
     parser.add_argument("--market", dest="market_path")
     parser.add_argument("--portfolio", dest="portfolio_path")
+    parser.add_argument("--ipo-history", dest="ipo_history_path",
+                         help="Pfad zur IPO-Verlaufsdatei (Standard: ipo_radar_history.json neben --in)")
     parser.add_argument("--out", dest="out_path", required=True)
     args = parser.parse_args()
 
@@ -589,7 +665,11 @@ def main():
         with open(args.portfolio_path, "r", encoding="utf-8") as f:
             portfolio = json.load(f)
 
-    html = build(data, market=market, portfolio=portfolio)
+    ipo_history_path = args.ipo_history_path or os.path.join(
+        os.path.dirname(os.path.abspath(args.in_path)), "ipo_radar_history.json"
+    )
+
+    html = build(data, market=market, portfolio=portfolio, ipo_history_path=ipo_history_path)
     with open(args.out_path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Dashboard geschrieben nach {args.out_path}")

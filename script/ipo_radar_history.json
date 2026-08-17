@@ -1,0 +1,22 @@
+{
+  "SpaceX": {
+    "termin": "12.06.2026 (IPO), seitdem an der Nasdaq",
+    "status": "bereits gelistet"
+  },
+  "KNDS": {
+    "termin": "ursprünglich Juni/Juli 2026, dann verschoben, neuer Anlauf evtl. September 2026",
+    "status": "geplant, mehrfach verschoben"
+  },
+  "Anthropic": {
+    "termin": "Oktober-Mitte November 2026 (vertraulicher S-1-Entwurf bereits eingereicht)",
+    "status": "geplant"
+  },
+  "Databricks": {
+    "termin": "explizit NICHT 2026 (CEO-Aussage Juni 2026), evtl. 2027",
+    "status": "verschoben"
+  },
+  "Revolut": {
+    "termin": "kein Termin, CEO nennt ca. 2028",
+    "status": "weit entfernt"
+  }
+}

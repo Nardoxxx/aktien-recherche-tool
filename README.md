@@ -91,6 +91,14 @@ angezeigt. **Wichtig bei erwähnten KI-Firmen wie Anthropic/OpenAI: Transparenzh
 Interessenkonflikt ergänzen, da dieses Tool selbst auf einem Anthropic-Modell laeuft - besonders neutral/
 kritisch bewerten statt unreflektiert positiv.**
 
+**IPO-Alarm bei Aenderungen (fest eingebaut seit 17.08.2026, laeuft automatisch):** `html_dashboard.py`
+vergleicht bei jedem Lauf automatisch `termin` und `status` jedes IPO-Radar-Eintrags mit dem letzten
+bekannten Stand (`script/ipo_radar_history.json`, wird automatisch angelegt/aktualisiert - unbedingt mit
+committen, sonst geht der Vergleichs-Stand verloren!). Aendert sich z.B. bei KNDS der Status von
+"verschoben" zu einem konkreten Zeichnungstermin, erscheint automatisch ein "🔔 IPO-Update"-Banner ganz
+oben im Dashboard. Kein zusaetzlicher Schritt noetig, laeuft mit wenn `--ipo-history` weggelassen wird
+(Standardpfad neben der `--in`-Datei).
+
 Zum Schluss: `python3 script/html_dashboard.py --in script/letzte_recherche.json --market
 script/market.json --portfolio reports/portfolio.json --out reports/Dashboard.html` (das
 selbst-enthaltene HTML-Dashboard mit Charts, wird lokal im Browser geoeffnet, nicht in Obsidian) -
