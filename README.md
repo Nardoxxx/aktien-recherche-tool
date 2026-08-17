@@ -44,9 +44,13 @@ Wie oben, aber OHNE `--refresh-prices` - stattdessen volle Neu-Recherche: `pytho
 --out script/letzte_recherche.json` (holt Kurse fuer alle Titel neu), dann fuer JEDEN der 31 Titel
 Fundamentaldaten per WebSearch/WebFetch recherchieren und ins JSON eintragen (Feldnamen siehe
 `analyse.py` `extract_metrics()`), dann `--score-only`, `--type weekly`. Zusaetzlich:
-`python3 script/portfolio_split.py --in script/letzte_recherche.json --kapital 1300 --out
-reports/portfolio.json` ausfuehren und daraus `reports/Portfolio-Vorschlag.md` bauen (Format wie
-vorheriger manueller Lauf, siehe Git-Historie/erste committete Version als Vorlage). Danach in
+`python3 script/portfolio_split.py --in script/letzte_recherche.json --sparplan "300,1000"
+--monatsrate 300 --out script/portfolio.json` ausfuehren (Leonardos echter Plan: ~300 EUR
+Starteinzahlung, ~1.000 EUR Kapital Ende des Monats, danach ~300 EUR/Monat laufend - bei Aenderung
+des Plans die Zahlen hier und im Skript-Aufruf anpassen) und daraus `reports/Portfolio-Vorschlag.md`
+bauen (Format/Ton siehe die bereits im Repo liegende Version als Vorlage - Sparplan-Tabelle mit
+Spalten fuer alle drei Kapital-Punkte, Hinweis dass sich bei so kleinen Betraegen pro Position ein
+echter monatlicher Sparplan beim Broker eher eignet als Einzelkaeufe). Danach in
 `reports/Performance-Tracking.md` fuer jeden Titel eine neue Log-Zeile ergaenzen (Datum, Score, Kurs).
 Zum Schluss: `python3 script/html_dashboard.py --in script/letzte_recherche.json --market
 script/market.json --portfolio reports/portfolio.json --out reports/Dashboard.html` (das

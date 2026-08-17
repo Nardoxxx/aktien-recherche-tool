@@ -92,7 +92,10 @@ def apply_cluster_cap(weights, cluster_map, cap, max_iter=10):
     return w
 
 
-def build_allocation(data, kapital):
+def compute_weights(data):
+    """Berechnet die Ziel-Gewichtung (%) je Ticker - unabhaengig vom Kapitalbetrag,
+    denn die Gewichtung ist eine reine Prozentregel (siehe Modul-Docstring).
+    Gibt (kandidaten-Liste, {ticker: anteil_pct}) zurueck."""
     kandidaten = []
     for t in data.get("titel", []):
         score = t.get("score")
@@ -102,8 +105,7 @@ def build_allocation(data, kapital):
         kandidaten.append(t)
 
     if not kandidaten:
-        return {"kapital": kapital, "min_score": MIN_SCORE, "positionen": [],
-                "hinweis": f"Kein Titel erreicht den Mindest-Score von {MIN_SCORE}."}
+        return kandidaten, {}
 
     basis_gewicht = {t["ticker"]: max(0.0, t["score"] - MIN_SCORE) for t in kandidaten}
     gesamt = sum(basis_gewicht.values())
@@ -119,31 +121,43 @@ def build_allocation(data, kapital):
     # Finale Normierung auf exakt 100% (Rundungsfehler aus den Iterationen ausgleichen)
     total_final = sum(pct.values())
     pct = {k: v / total_final * 100 for k, v in pct.items()}
+    return kandidaten, pct
+
+
+def _position_row(t, anteil, kapital):
+    m = t["metriken"]
+    preis = m["preis"]
+    waehrung = m.get("waehrung", "EUR")
+    fx = FX_TO_EUR.get(waehrung, 1.0)
+    preis_eur = preis * fx
+    betrag_eur = kapital * anteil / 100
+    stueckzahl = betrag_eur / preis_eur if preis_eur else None
+    return {
+        "ticker": t["ticker"],
+        "name": m.get("name"),
+        "cluster": t.get("cluster"),
+        "score": t.get("score"),
+        "anteil_pct": round(anteil, 1),
+        "betrag_eur": round(betrag_eur, 2),
+        "kurs": preis,
+        "waehrung": waehrung,
+        "kurs_ca_eur": round(preis_eur, 2),
+        "stueckzahl_ca": round(stueckzahl, 3) if stueckzahl else None,
+        "bruchteilsaktie_noetig": bool(preis_eur and preis_eur > betrag_eur),
+    }
+
+
+def build_allocation(data, kapital):
+    kandidaten, pct = compute_weights(data)
+    if not kandidaten:
+        return {"kapital": kapital, "min_score": MIN_SCORE, "positionen": [],
+                "hinweis": f"Kein Titel erreicht den Mindest-Score von {MIN_SCORE}."}
 
     ticker_by_name = {t["ticker"]: t for t in kandidaten}
-    positionen = []
-    for ticker, anteil in sorted(pct.items(), key=lambda kv: -kv[1]):
-        t = ticker_by_name[ticker]
-        m = t["metriken"]
-        preis = m["preis"]
-        waehrung = m.get("waehrung", "EUR")
-        fx = FX_TO_EUR.get(waehrung, 1.0)
-        preis_eur = preis * fx
-        betrag_eur = kapital * anteil / 100
-        stueckzahl = betrag_eur / preis_eur if preis_eur else None
-        positionen.append({
-            "ticker": ticker,
-            "name": m.get("name"),
-            "cluster": t.get("cluster"),
-            "score": t.get("score"),
-            "anteil_pct": round(anteil, 1),
-            "betrag_eur": round(betrag_eur, 2),
-            "kurs": preis,
-            "waehrung": waehrung,
-            "kurs_ca_eur": round(preis_eur, 2),
-            "stueckzahl_ca": round(stueckzahl, 3) if stueckzahl else None,
-            "bruchteilsaktie_noetig": bool(preis_eur and preis_eur > betrag_eur),
-        })
+    positionen = [
+        _position_row(ticker_by_name[ticker], anteil, kapital)
+        for ticker, anteil in sorted(pct.items(), key=lambda kv: -kv[1])
+    ]
 
     return {
         "kapital": kapital,
@@ -156,17 +170,69 @@ def build_allocation(data, kapital):
     }
 
 
+def build_sparplan(data, kapital_stufen, monatsrate):
+    """Wie build_allocation, aber zeigt dieselbe Ziel-Gewichtung fuer mehrere
+    Kapital-Stufen gleichzeitig (z.B. Start-Einzahlung, Kapital Ende Monat) plus
+    die monatliche Sparrate - weil die Gewichtung eine reine Prozentregel ist,
+    die sich mit dem Kapital nicht aendert, nur die Euro-Betraege skalieren."""
+    kandidaten, pct = compute_weights(data)
+    if not kandidaten:
+        return {"kapital_stufen": kapital_stufen, "monatsrate": monatsrate, "min_score": MIN_SCORE,
+                "positionen": [], "hinweis": f"Kein Titel erreicht den Mindest-Score von {MIN_SCORE}."}
+
+    ticker_by_name = {t["ticker"]: t for t in kandidaten}
+    positionen = []
+    for ticker, anteil in sorted(pct.items(), key=lambda kv: -kv[1]):
+        t = ticker_by_name[ticker]
+        m = t["metriken"]
+        preis = m["preis"]
+        fx = FX_TO_EUR.get(m.get("waehrung", "EUR"), 1.0)
+        preis_eur = preis * fx
+        eintrag = {
+            "ticker": ticker,
+            "name": m.get("name"),
+            "cluster": t.get("cluster"),
+            "score": t.get("score"),
+            "anteil_pct": round(anteil, 1),
+            "kurs": preis,
+            "waehrung": m.get("waehrung", "EUR"),
+            "kurs_ca_eur": round(preis_eur, 2),
+            "betraege_eur": {str(k): round(k * anteil / 100, 2) for k in kapital_stufen},
+            "betrag_pro_rate_eur": round(monatsrate * anteil / 100, 2),
+            "bruchteilsaktie_noetig_bei_rate": bool(preis_eur and preis_eur > (monatsrate * anteil / 100)),
+        }
+        positionen.append(eintrag)
+
+    return {
+        "kapital_stufen": kapital_stufen,
+        "monatsrate": monatsrate,
+        "min_score": MIN_SCORE,
+        "max_position_pct": MAX_POSITION_PCT,
+        "max_cluster_pct": MAX_CLUSTER_PCT,
+        "anzahl_qualifizierter_titel": len(kandidaten),
+        "anzahl_ausgeschlossen": len(data.get("titel", [])) - len(kandidaten),
+        "positionen": positionen,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description="Regelbasierter Kapital-Aufteilungs-Vorschlag (keine Anlageberatung)")
     parser.add_argument("--in", dest="in_path", required=True, help="Gescorte JSON-Datei")
-    parser.add_argument("--kapital", type=float, default=1300.0, help="Verfuegbares Kapital in EUR")
+    parser.add_argument("--kapital", type=float, default=1300.0, help="Verfuegbares Kapital in EUR (Einmalbetrag-Modus)")
+    parser.add_argument("--sparplan", help="Komma-getrennte Kapital-Stufen fuer den Sparplan-Modus, z.B. '300,1000'")
+    parser.add_argument("--monatsrate", type=float, default=300.0, help="Monatliche Sparrate in EUR (nur mit --sparplan)")
     parser.add_argument("--out", help="Ergebnis als JSON in diese Datei schreiben statt nach stdout")
     args = parser.parse_args()
 
     with open(args.in_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    result = build_allocation(data, args.kapital)
+    if args.sparplan:
+        kapital_stufen = [float(x.strip()) for x in args.sparplan.split(",")]
+        result = build_sparplan(data, kapital_stufen, args.monatsrate)
+    else:
+        result = build_allocation(data, args.kapital)
+
     text = json.dumps(result, ensure_ascii=False, indent=2)
     if args.out:
         with open(args.out, "w", encoding="utf-8") as f:

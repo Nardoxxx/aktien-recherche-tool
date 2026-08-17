@@ -28,6 +28,11 @@ STATUS = {
     "kritisch": "#d03b3b",
 }
 
+# Gleiche Schwellenwerte wie in dashboard_notes.py - ein Titel ist Swing-Kandidat,
+# wenn er spuerbar unter seinem 52-Wochen-Hoch notiert UND fundamental noch solide ist.
+SWING_MIN_ABSTAND_VOM_HOCH_PCT = -10.0
+SWING_MIN_SCORE = 50.0
+
 CAT_LIGHT = ["#2a78d6", "#eb6834", "#1baf7a"]
 CAT_DARK = ["#3987e5", "#d95926", "#199e70"]
 
@@ -42,6 +47,17 @@ def score_band(score):
     if score >= 30:
         return "durchwachsen"
     return "kritisch"
+
+
+def compute_abstand_52w_hoch(m):
+    """Nicht in der letzte_recherche.json persistiert (nur eine abgeleitete
+    Report-Kennzahl), deshalb hier lokal aus preis/52w_hoch nachgerechnet -
+    identische Formel wie in dashboard_notes.py."""
+    preis = m.get("preis")
+    hoch = m.get("52w_hoch")
+    if not preis or not hoch:
+        return None
+    return round((preis - hoch) / hoch * 100, 1)
 
 
 def esc(s):
@@ -105,18 +121,26 @@ def build_cluster_donut(titel_list):
 
 
 def build_portfolio_bars(portfolio):
+    """Vertraegt beide portfolio_split.py-Ausgabeformate: den Einmalbetrag-Modus
+    (Feld 'betrag_eur' pro Position) und den --sparplan-Modus (Feld
+    'betrag_pro_rate_eur' + 'betraege_eur'-Dict pro Position, keine 'betrag_eur')."""
     if not portfolio or not portfolio.get("positionen"):
         return None
+    is_sparplan = "betrag_pro_rate_eur" in portfolio["positionen"][0]
     rows = []
     max_pct = max(p["anteil_pct"] for p in portfolio["positionen"])
     for p in portfolio["positionen"]:
         pct = p["anteil_pct"]
         width = pct / max_pct * 100
+        if is_sparplan:
+            betrag_label = f"{p['betrag_pro_rate_eur']:.0f} EUR/Monat"
+        else:
+            betrag_label = f"{p['betrag_eur']:.0f} EUR"
         rows.append(f'''
       <div class="bar-row">
         <div class="bar-label">{esc(p["ticker"])}</div>
         <div class="bar-track">
-          <div class="bar-fill" style="width:{width:.1f}%; background:var(--series-1);" title="{esc(p['name'])}: {pct:.1f}% ({p['betrag_eur']:.0f} EUR)"></div>
+          <div class="bar-fill" style="width:{width:.1f}%; background:var(--series-1);" title="{esc(p['name'])}: {pct:.1f}% ({betrag_label})"></div>
         </div>
         <div class="bar-value">{pct:.1f}%</div>
       </div>''')
@@ -148,6 +172,45 @@ def build_stat_tiles(market):
     return "\n".join(tiles)
 
 
+def build_swing_table(titel_list):
+    """Eigene, prominente Tabelle nur der Swing-Kandidaten (spuerbar unter
+    52-Wochen-Hoch UND fundamental weiter solide) - sortiert nach Score, damit
+    die qualitativ staerksten Dip-Kandidaten oben stehen."""
+    kandidaten = []
+    for t in titel_list:
+        m = t["metriken"]
+        score = t.get("score")
+        abstand = compute_abstand_52w_hoch(m)
+        if (abstand is not None and score is not None
+                and abstand <= SWING_MIN_ABSTAND_VOM_HOCH_PCT and score >= SWING_MIN_SCORE):
+            kandidaten.append((t, abstand))
+
+    if not kandidaten:
+        return None
+
+    kandidaten.sort(key=lambda pair: -pair[0]["score"])
+    rows = []
+    for t, abstand in kandidaten:
+        m = t["metriken"]
+        band = score_band(t["score"])
+        color = STATUS[band]
+        preis_str = f"{m['preis']:.2f} {esc(m.get('waehrung') or '')}" if m.get("preis") is not None else "k.A."
+        hoch_str = f"{m['52w_hoch']:.2f}" if m.get("52w_hoch") is not None else "k.A."
+        earnings = esc(m.get("naechste_earnings_datum")) or "-"
+        rows.append(f'''
+        <tr>
+          <td><strong>{esc(t["ticker"])}</strong></td>
+          <td>{esc(m.get("name"))}</td>
+          <td><span class="score-dot" style="background:{color}"></span>{t["score"]:.1f}</td>
+          <td>{preis_str}</td>
+          <td class="swing-neg">{abstand:.1f}%</td>
+          <td>{hoch_str}</td>
+          <td>{esc(t.get("cluster") or "-")}</td>
+          <td>{earnings}</td>
+        </tr>''')
+    return "\n".join(rows), len(kandidaten)
+
+
 def build_table_rows(titel_list):
     ranked = sorted(titel_list, key=lambda t: (t.get("score") is None, -(t.get("score") or 0)))
     rows = []
@@ -156,8 +219,9 @@ def build_table_rows(titel_list):
         score = t.get("score")
         band = score_band(score) if score is not None else None
         color = STATUS.get(band, "#898781")
-        swing = "🟢" if (m.get("abstand_52w_hoch_pct") is not None and score is not None
-                         and m["abstand_52w_hoch_pct"] <= -10 and score >= 50) else ""
+        abstand_tbl = compute_abstand_52w_hoch(m)
+        swing = "🟢" if (abstand_tbl is not None and score is not None
+                         and abstand_tbl <= SWING_MIN_ABSTAND_VOM_HOCH_PCT and score >= SWING_MIN_SCORE) else ""
 
         score_str = f"{score:.1f}" if score is not None else "k.A."
         score_sort = score if score is not None else -1
@@ -289,6 +353,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   th::after {{ content: " ⇅"; color: var(--text-muted); font-size: 10px; }}
   td {{ font-variant-numeric: tabular-nums; }}
   .score-dot {{ display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }}
+  .swing-card {{ border-left: 3px solid #fab219; }}
+  .swing-neg {{ color: #d03b3b; font-weight: 600; }}
+  .swing-empty {{ color: var(--text-muted); font-size: 13px; }}
   footer {{ color: var(--text-muted); font-size: 12px; text-align: center; margin-top: 24px; }}
 </style>
 </head>
@@ -325,6 +392,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       </div>
     </div>
   </div>
+
+  {swing_card}
 
   {portfolio_card}
 
@@ -393,13 +462,38 @@ def build(data, market=None, portfolio=None):
     portfolio_bars = build_portfolio_bars(portfolio)
 
     if portfolio_bars:
+        if "monatsrate" in (portfolio or {}):
+            kapital_label = f"Sparplan {portfolio.get('monatsrate', 0):.0f} EUR/Monat"
+        else:
+            kapital_label = f"{(portfolio or {}).get('kapital', 0):.0f} EUR"
         portfolio_card = f'''
   <div class="card">
-    <h2>Portfolio-Vorschlag ({portfolio.get("kapital", 0):.0f} EUR, nur Score ≥ {portfolio.get("min_score", 50):.0f})</h2>
+    <h2>Portfolio-Vorschlag ({kapital_label}, nur Score ≥ {(portfolio or {}).get("min_score", 50):.0f})</h2>
     {portfolio_bars}
   </div>'''
     else:
         portfolio_card = ""
+
+    swing_result = build_swing_table(titel_list)
+    if swing_result:
+        swing_rows, swing_count = swing_result
+        swing_card = f'''
+  <div class="card swing-card">
+    <h2>🟡 Swing-Kandidaten ({swing_count}) — ≥10% unter 52-Wochen-Hoch, Score ≥ 50</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th><th>Name</th><th>Score</th><th>Kurs</th>
+          <th>Abstand 52W-Hoch</th><th>52W-Hoch</th><th>Cluster</th><th>Nächste Zahlen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {swing_rows}
+      </tbody>
+    </table>
+  </div>'''
+    else:
+        swing_card = '<div class="card swing-card"><h2>🟡 Swing-Kandidaten</h2><div class="swing-empty">Aktuell kein Titel, der gleichzeitig ≥10% unter seinem 52-Wochen-Hoch UND fundamental solide (Score ≥ 50) ist.</div></div>'
 
     html = HTML_TEMPLATE.format(
         erzeugt_am=esc(data.get("erzeugt_am", "k.A.")),
@@ -409,6 +503,7 @@ def build(data, market=None, portfolio=None):
         score_bars=score_bars,
         donut_segments=donut_segments,
         donut_legend=donut_legend,
+        swing_card=swing_card,
         portfolio_card=portfolio_card,
         table_rows=build_table_rows(titel_list),
     )

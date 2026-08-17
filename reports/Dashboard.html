@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aktien Dashboard</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --series-1: #2a78d6;
+    --cat-1: #2a78d6;
+    --cat-2: #eb6834;
+    --cat-3: #1baf7a;
+    --good: #0ca30c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --series-1: #3987e5;
+      --cat-1: #3987e5;
+      --cat-2: #d95926;
+      --cat-3: #199e70;
+      --good: #0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --grid: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255,255,255,0.10);
+    --series-1: #3987e5;
+    --cat-1: #3987e5;
+    --cat-2: #d95926;
+    --cat-3: #199e70;
+    --good: #0ca30c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px; background: var(--page); color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; flex-wrap: wrap; gap: 8px; }
+  h1 { font-size: 22px; margin: 0; }
+  .meta { color: var(--text-muted); font-size: 13px; }
+  .theme-toggle {
+    background: var(--surface-1); border: 1px solid var(--border); color: var(--text-secondary);
+    padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;
+  }
+  .disclaimer {
+    background: var(--surface-1); border: 1px solid var(--border); border-left: 3px solid #fab219;
+    padding: 10px 14px; border-radius: 6px; font-size: 13px; color: var(--text-secondary); margin: 16px 0 24px;
+  }
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; margin-bottom: 20px;
+  }
+  .card h2 { font-size: 15px; margin: 0 0 16px; color: var(--text-primary); }
+  .stat-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .stat-tile { flex: 1; min-width: 140px; }
+  .stat-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+  .stat-value { font-size: 24px; font-weight: 600; font-variant-numeric: proportional-nums; }
+  .stat-delta { font-size: 12px; margin-top: 2px; }
+  .delta-ok { color: var(--text-muted); }
+  .delta-bad { color: #d03b3b; font-weight: 600; }
+  .status-badge { font-size: 10px; padding: 1px 6px; border-radius: 10px; font-weight: 600; }
+  .status-badge.critical { background: #d03b3b; color: white; }
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+  @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 2px; height: 22px; }
+  .bar-label { width: 56px; font-size: 12px; color: var(--text-secondary); flex-shrink: 0; text-align: right; font-variant-numeric: tabular-nums; }
+  .bar-track { flex: 1; background: var(--grid); border-radius: 3px; height: 18px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; min-width: 2px; }
+  .bar-value { width: 44px; font-size: 12px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+  .donut-wrap { display: flex; align-items: center; gap: 20px; }
+  .donut-svg { width: 140px; height: 140px; transform: rotate(-90deg); }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--grid); }
+  th { color: var(--text-secondary); font-weight: 600; cursor: pointer; user-select: none; white-space: nowrap; }
+  th:hover { color: var(--text-primary); }
+  th::after { content: " ⇅"; color: var(--text-muted); font-size: 10px; }
+  td { font-variant-numeric: tabular-nums; }
+  .score-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .swing-card { border-left: 3px solid #fab219; }
+  .swing-neg { color: #d03b3b; font-weight: 600; }
+  .swing-empty { color: var(--text-muted); font-size: 13px; }
+  footer { color: var(--text-muted); font-size: 12px; text-align: center; margin-top: 24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📊 Aktien Dashboard</h1>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Modus wechseln</button>
+  </header>
+  <div class="meta">Erzeugt: 2026-08-17T20:28:22 · Modus: live-free-tier+recherche</div>
+
+  <div class="disclaimer">⚠️ Keine Anlageberatung — rein mathematische Kennzahlen-Einordnung auf Basis der EODHD-Free-Tier-Daten und Web-Recherche. Alle Scores sind relative Einordnung innerhalb dieser Watchlist.</div>
+
+  <div class="card">
+    <h2>Marktüberblick</h2>
+    <div class="stat-row">
+      
+      <div class="stat-tile">
+        <div class="stat-label">S&amp;P 500</div>
+        <div class="stat-value">7,755.2</div>
+        <div class="stat-delta delta-ok">-0.6% vom 6M-Hoch</div>
+      </div>
+
+      <div class="stat-tile">
+        <div class="stat-label">Nasdaq 100</div>
+        <div class="stat-value">30,019.9</div>
+        <div class="stat-delta delta-ok">-2.1% vom 6M-Hoch</div>
+      </div>
+
+      <div class="stat-tile">
+        <div class="stat-label">DAX</div>
+        <div class="stat-value">26,338.6</div>
+        <div class="stat-delta delta-ok">-0.4% vom 6M-Hoch</div>
+      </div>
+
+      <div class="stat-tile">
+        <div class="stat-label">Euro Stoxx 50</div>
+        <div class="stat-value">6,530.4</div>
+        <div class="stat-delta delta-ok">-0.3% vom 6M-Hoch</div>
+      </div>
+
+      <div class="stat-tile">
+        <div class="stat-label">VIX</div>
+        <div class="stat-value">15.2</div>
+        <div class="stat-delta delta-ok">Krisen-Schwelle: 30 (aktuell 15.2)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h2>Score-Ranking (31 Titel)</h2>
+      
+      <div class="bar-row">
+        <div class="bar-label">MU</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:92.5%; background:#0ca30c;" title="Micron Technology: 92.5 / 100"></div>
+        </div>
+        <div class="bar-value">92.5</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">AMZN</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:69.5%; background:#fab219;" title="Amazon: 69.5 / 100"></div>
+        </div>
+        <div class="bar-value">69.5</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">NVDA</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:69.3%; background:#fab219;" title="Nvidia: 69.3 / 100"></div>
+        </div>
+        <div class="bar-value">69.3</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">GOOGL</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:68.5%; background:#fab219;" title="Alphabet: 68.5 / 100"></div>
+        </div>
+        <div class="bar-value">68.5</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">RHM</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:64.1%; background:#fab219;" title="Rheinmetall: 64.1 / 100"></div>
+        </div>
+        <div class="bar-value">64.1</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">MSFT</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:63.3%; background:#fab219;" title="Microsoft: 63.3 / 100"></div>
+        </div>
+        <div class="bar-value">63.3</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">LMT</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:60.6%; background:#fab219;" title="Lockheed Martin: 60.6 / 100"></div>
+        </div>
+        <div class="bar-value">60.6</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">AMD</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:59.3%; background:#fab219;" title="Advanced Micro Devices: 59.3 / 100"></div>
+        </div>
+        <div class="bar-value">59.3</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">SAP</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:58.5%; background:#fab219;" title="SAP: 58.5 / 100"></div>
+        </div>
+        <div class="bar-value">58.5</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">PLTR</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:57.7%; background:#fab219;" title="Palantir Technologies: 57.7 / 100"></div>
+        </div>
+        <div class="bar-value">57.7</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">MC</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:53.0%; background:#fab219;" title="LVMH: 53.0 / 100"></div>
+        </div>
+        <div class="bar-value">53.0</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">LLY</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:52.7%; background:#fab219;" title="Eli Lilly: 52.7 / 100"></div>
+        </div>
+        <div class="bar-value">52.7</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">NOVN</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:52.7%; background:#fab219;" title="Novartis: 52.7 / 100"></div>
+        </div>
+        <div class="bar-value">52.7</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">UBER</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:51.9%; background:#fab219;" title="Uber Technologies: 51.9 / 100"></div>
+        </div>
+        <div class="bar-value">51.9</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">AVGO</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:51.5%; background:#fab219;" title="Broadcom: 51.5 / 100"></div>
+        </div>
+        <div class="bar-value">51.5</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">RTX</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:50.6%; background:#fab219;" title="RTX Corp (Raytheon): 50.6 / 100"></div>
+        </div>
+        <div class="bar-value">50.6</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">V</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:47.9%; background:#ec835a;" title="Visa: 47.9 / 100"></div>
+        </div>
+        <div class="bar-value">47.9</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">SU</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:47.9%; background:#ec835a;" title="Schneider Electric: 47.9 / 100"></div>
+        </div>
+        <div class="bar-value">47.9</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">ALV</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:47.4%; background:#ec835a;" title="Allianz: 47.4 / 100"></div>
+        </div>
+        <div class="bar-value">47.4</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">AIR</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:47.3%; background:#ec835a;" title="Airbus: 47.3 / 100"></div>
+        </div>
+        <div class="bar-value">47.3</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">META</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:47.1%; background:#ec835a;" title="Meta Platforms: 47.1 / 100"></div>
+        </div>
+        <div class="bar-value">47.1</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">IFX</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:44.8%; background:#ec835a;" title="Infineon Technologies: 44.8 / 100"></div>
+        </div>
+        <div class="bar-value">44.8</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">LDO</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:40.5%; background:#ec835a;" title="Leonardo S.p.A.: 40.5 / 100"></div>
+        </div>
+        <div class="bar-value">40.5</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">NOVO-B</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:39.3%; background:#ec835a;" title="Novo Nordisk: 39.3 / 100"></div>
+        </div>
+        <div class="bar-value">39.3</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">HO</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:38.9%; background:#ec835a;" title="Thales: 38.9 / 100"></div>
+        </div>
+        <div class="bar-value">38.9</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">ENR</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:34.6%; background:#ec835a;" title="Siemens Energy: 34.6 / 100"></div>
+        </div>
+        <div class="bar-value">34.6</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">ASML</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:33.3%; background:#ec835a;" title="ASML Holding: 33.3 / 100"></div>
+        </div>
+        <div class="bar-value">33.3</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">IBE</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:31.3%; background:#ec835a;" title="Iberdrola: 31.3 / 100"></div>
+        </div>
+        <div class="bar-value">31.3</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">COST</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:25.1%; background:#d03b3b;" title="Costco Wholesale: 25.1 / 100"></div>
+        </div>
+        <div class="bar-value">25.1</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">RMS</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:22.0%; background:#d03b3b;" title="Hermès: 22.0 / 100"></div>
+        </div>
+        <div class="bar-value">22.0</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">SRT3</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:18.3%; background:#d03b3b;" title="Sartorius: 18.3 / 100"></div>
+        </div>
+        <div class="bar-value">18.3</div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Watchlist nach Cluster</h2>
+      <div class="donut-wrap">
+        <svg class="donut-svg" viewBox="0 0 42 42">
+          <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="var(--grid)" stroke-width="4"></circle>
+          <circle class="donut-seg" cx="21" cy="21" r="15.9155" fill="transparent" stroke="var(--cat-1)" stroke-width="4" stroke-dasharray="19.35 80.65" stroke-dashoffset="100.00"><title>chip-lieferkette-nvidia: 6 Titel (19%)</title></circle>
+<circle class="donut-seg" cx="21" cy="21" r="15.9155" fill="transparent" stroke="var(--cat-2)" stroke-width="4" stroke-dasharray="16.13 83.87" stroke-dashoffset="80.65"><title>ruestung: 5 Titel (16%)</title></circle>
+<circle class="donut-seg" cx="21" cy="21" r="15.9155" fill="transparent" stroke="var(--cat-3)" stroke-width="4" stroke-dasharray="64.52 35.48" stroke-dashoffset="64.52"><title>sonstige: 20 Titel (65%)</title></circle>
+        </svg>
+        <div><div class="legend-item"><span class="legend-dot" style="background:var(--cat-1)"></span>chip-lieferkette-nvidia (6)</div>
+<div class="legend-item"><span class="legend-dot" style="background:var(--cat-2)"></span>ruestung (5)</div>
+<div class="legend-item"><span class="legend-dot" style="background:var(--cat-3)"></span>sonstige (20)</div></div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="card swing-card">
+    <h2>🟡 Swing-Kandidaten (11) — ≥10% unter 52-Wochen-Hoch, Score ≥ 50</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th><th>Name</th><th>Score</th><th>Kurs</th>
+          <th>Abstand 52W-Hoch</th><th>52W-Hoch</th><th>Cluster</th><th>Nächste Zahlen</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td><strong>MU</strong></td>
+          <td>Micron Technology</td>
+          <td><span class="score-dot" style="background:#0ca30c"></span>92.5</td>
+          <td>1016.09 USD</td>
+          <td class="swing-neg">-16.3%</td>
+          <td>1213.37</td>
+          <td>chip-lieferkette-nvidia</td>
+          <td>2026-09-22</td>
+        </tr>
+
+        <tr>
+          <td><strong>GOOGL</strong></td>
+          <td>Alphabet</td>
+          <td><span class="score-dot" style="background:#fab219"></span>68.5</td>
+          <td>343.66 USD</td>
+          <td class="swing-neg">-14.6%</td>
+          <td>402.38</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td><strong>RHM</strong></td>
+          <td>Rheinmetall</td>
+          <td><span class="score-dot" style="background:#fab219"></span>64.1</td>
+          <td>1214.00 EUR</td>
+          <td class="swing-neg">-38.3%</td>
+          <td>1968.82</td>
+          <td>ruestung</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td><strong>MSFT</strong></td>
+          <td>Microsoft</td>
+          <td><span class="score-dot" style="background:#fab219"></span>63.3</td>
+          <td>479.62 USD</td>
+          <td class="swing-neg">-11.0%</td>
+          <td>538.66</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td><strong>LMT</strong></td>
+          <td>Lockheed Martin</td>
+          <td><span class="score-dot" style="background:#fab219"></span>60.6</td>
+          <td>596.31 USD</td>
+          <td class="swing-neg">-11.3%</td>
+          <td>672.30</td>
+          <td>ruestung</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td><strong>AMD</strong></td>
+          <td>Advanced Micro Devices</td>
+          <td><span class="score-dot" style="background:#fab219"></span>59.3</td>
+          <td>508.25 USD</td>
+          <td class="swing-neg">-12.5%</td>
+          <td>580.91</td>
+          <td>chip-lieferkette-nvidia</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td><strong>SAP</strong></td>
+          <td>SAP</td>
+          <td><span class="score-dot" style="background:#fab219"></span>58.5</td>
+          <td>179.58 EUR</td>
+          <td class="swing-neg">-24.5%</td>
+          <td>237.96</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td><strong>PLTR</strong></td>
+          <td>Palantir Technologies</td>
+          <td><span class="score-dot" style="background:#fab219"></span>57.7</td>
+          <td>173.68 USD</td>
+          <td class="swing-neg">-16.2%</td>
+          <td>207.18</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td><strong>MC</strong></td>
+          <td>LVMH</td>
+          <td><span class="score-dot" style="background:#fab219"></span>53.0</td>
+          <td>446.00 EUR</td>
+          <td class="swing-neg">-30.5%</td>
+          <td>641.64</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td><strong>UBER</strong></td>
+          <td>Uber Technologies</td>
+          <td><span class="score-dot" style="background:#fab219"></span>51.9</td>
+          <td>75.71 USD</td>
+          <td class="swing-neg">-24.4%</td>
+          <td>100.10</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td><strong>AVGO</strong></td>
+          <td>Broadcom</td>
+          <td><span class="score-dot" style="background:#fab219"></span>51.5</td>
+          <td>394.36 USD</td>
+          <td class="swing-neg">-18.0%</td>
+          <td>480.77</td>
+          <td>chip-lieferkette-nvidia</td>
+          <td>2026-09-02</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="card">
+    <h2>Portfolio-Vorschlag (Sparplan 300 EUR/Monat, nur Score ≥ 50)</h2>
+    
+      <div class="bar-row">
+        <div class="bar-label">MU</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:100.0%; background:var(--series-1);" title="Micron Technology: 15.0% (45 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">15.0%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">AMZN</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:91.3%; background:var(--series-1);" title="Amazon: 13.7% (41 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">13.7%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">GOOGL</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:86.7%; background:var(--series-1);" title="Alphabet: 13.0% (39 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">13.0%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">RHM</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:66.0%; background:var(--series-1);" title="Rheinmetall: 9.9% (30 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">9.9%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">MSFT</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:62.0%; background:var(--series-1);" title="Microsoft: 9.3% (28 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">9.3%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">NVDA</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:54.7%; background:var(--series-1);" title="Nvidia: 8.2% (25 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">8.2%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">LMT</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:49.3%; background:var(--series-1);" title="Lockheed Martin: 7.4% (22 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">7.4%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">SAP</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:40.0%; background:var(--series-1);" title="SAP: 6.0% (18 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">6.0%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">PLTR</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:36.0%; background:var(--series-1);" title="Palantir Technologies: 5.4% (16 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">5.4%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">AMD</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:26.7%; background:var(--series-1);" title="Advanced Micro Devices: 4.0% (12 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">4.0%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">MC</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:14.0%; background:var(--series-1);" title="LVMH: 2.1% (6 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">2.1%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">LLY</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:12.7%; background:var(--series-1);" title="Eli Lilly: 1.9% (6 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">1.9%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">NOVN</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:12.7%; background:var(--series-1);" title="Novartis: 1.9% (6 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">1.9%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">UBER</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:8.7%; background:var(--series-1);" title="Uber Technologies: 1.3% (4 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">1.3%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">AVGO</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:4.0%; background:var(--series-1);" title="Broadcom: 0.6% (2 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">0.6%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">RTX</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:2.7%; background:var(--series-1);" title="RTX Corp (Raytheon): 0.4% (1 EUR/Monat)"></div>
+        </div>
+        <div class="bar-value">0.4%</div>
+      </div>
+  </div>
+
+  <div class="card">
+    <h2>Alle Titel im Detail</h2>
+    <table id="main-table">
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">Ticker</th>
+          <th onclick="sortTable(1)">Name</th>
+          <th onclick="sortTable(2)">Score</th>
+          <th onclick="sortTable(3)">Kurs</th>
+          <th onclick="sortTable(4)">KGV</th>
+          <th onclick="sortTable(5)">Wachstum</th>
+          <th onclick="sortTable(6)">Region</th>
+          <th onclick="sortTable(7)">Cluster</th>
+          <th onclick="sortTable(8)">Swing</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>MU</td>
+          <td>Micron Technology</td>
+          <td data-sort="92.5"><span class="score-dot" style="background:#0ca30c"></span>92.5</td>
+          <td data-sort="1016.085">1016.09 USD</td>
+          <td data-sort="21.93">21.93</td>
+          <td data-sort="167.0">167.0%</td>
+          <td>US</td>
+          <td>chip-lieferkette-nvidia</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>AMZN</td>
+          <td>Amazon</td>
+          <td data-sort="69.5"><span class="score-dot" style="background:#fab219"></span>69.5</td>
+          <td data-sort="259.875">259.88 USD</td>
+          <td data-sort="21.12">21.12</td>
+          <td data-sort="15.8">15.8%</td>
+          <td>US</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>NVDA</td>
+          <td>Nvidia</td>
+          <td data-sort="69.3"><span class="score-dot" style="background:#fab219"></span>69.3</td>
+          <td data-sort="225.455">225.46 USD</td>
+          <td data-sort="34.48">34.48</td>
+          <td data-sort="70.7">70.7%</td>
+          <td>US</td>
+          <td>chip-lieferkette-nvidia</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>GOOGL</td>
+          <td>Alphabet</td>
+          <td data-sort="68.5"><span class="score-dot" style="background:#fab219"></span>68.5</td>
+          <td data-sort="343.66">343.66 USD</td>
+          <td data-sort="17.36">17.36</td>
+          <td data-sort="20.1">20.1%</td>
+          <td>US</td>
+          <td>-</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>RHM</td>
+          <td>Rheinmetall</td>
+          <td data-sort="64.1"><span class="score-dot" style="background:#fab219"></span>64.1</td>
+          <td data-sort="1214.0">1214.00 EUR</td>
+          <td data-sort="32.5">32.5</td>
+          <td data-sort="42.5">42.5%</td>
+          <td>EU (Deutschland)</td>
+          <td>ruestung</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>MSFT</td>
+          <td>Microsoft</td>
+          <td data-sort="63.3"><span class="score-dot" style="background:#fab219"></span>63.3</td>
+          <td data-sort="479.625">479.62 USD</td>
+          <td data-sort="27.6">27.6</td>
+          <td data-sort="17.8">17.8%</td>
+          <td>US</td>
+          <td>-</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>LMT</td>
+          <td>Lockheed Martin</td>
+          <td data-sort="60.6"><span class="score-dot" style="background:#fab219"></span>60.6</td>
+          <td data-sort="596.31">596.31 USD</td>
+          <td data-sort="22.43">22.43</td>
+          <td data-sort="7.2">7.2%</td>
+          <td>US</td>
+          <td>ruestung</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>AMD</td>
+          <td>Advanced Micro Devices</td>
+          <td data-sort="59.3"><span class="score-dot" style="background:#fab219"></span>59.3</td>
+          <td data-sort="508.251">508.25 USD</td>
+          <td data-sort="131.29">131.29</td>
+          <td data-sort="39.5">39.5%</td>
+          <td>US</td>
+          <td>chip-lieferkette-nvidia</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>SAP</td>
+          <td>SAP</td>
+          <td data-sort="58.5"><span class="score-dot" style="background:#fab219"></span>58.5</td>
+          <td data-sort="179.58">179.58 EUR</td>
+          <td data-sort="26.87">26.87</td>
+          <td data-sort="6.4">6.4%</td>
+          <td>EU (Deutschland)</td>
+          <td>-</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>PLTR</td>
+          <td>Palantir Technologies</td>
+          <td data-sort="57.7"><span class="score-dot" style="background:#fab219"></span>57.7</td>
+          <td data-sort="173.68">173.68 USD</td>
+          <td data-sort="148.85">148.85</td>
+          <td data-sort="78.9">78.9%</td>
+          <td>US</td>
+          <td>-</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>MC</td>
+          <td>LVMH</td>
+          <td data-sort="53.0"><span class="score-dot" style="background:#fab219"></span>53.0</td>
+          <td data-sort="446.0">446.00 EUR</td>
+          <td data-sort="20.3">20.3</td>
+          <td data-sort="0">k.A.</td>
+          <td>EU (Frankreich)</td>
+          <td>-</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>LLY</td>
+          <td>Eli Lilly</td>
+          <td data-sort="52.7"><span class="score-dot" style="background:#fab219"></span>52.7</td>
+          <td data-sort="1190.9">1190.90 USD</td>
+          <td data-sort="39.62">39.62</td>
+          <td data-sort="49.6">49.6%</td>
+          <td>US</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>NOVN</td>
+          <td>Novartis</td>
+          <td data-sort="52.7"><span class="score-dot" style="background:#fab219"></span>52.7</td>
+          <td data-sort="123.4">123.40 EUR</td>
+          <td data-sort="22.48">22.48</td>
+          <td data-sort="9.57">9.6%</td>
+          <td>EU (Schweiz)</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>UBER</td>
+          <td>Uber Technologies</td>
+          <td data-sort="51.9"><span class="score-dot" style="background:#fab219"></span>51.9</td>
+          <td data-sort="75.71">75.71 USD</td>
+          <td data-sort="16.57">16.57</td>
+          <td data-sort="16.7">16.7%</td>
+          <td>US</td>
+          <td>-</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>AVGO</td>
+          <td>Broadcom</td>
+          <td data-sort="51.5"><span class="score-dot" style="background:#fab219"></span>51.5</td>
+          <td data-sort="394.355">394.36 USD</td>
+          <td data-sort="65.4">65.4</td>
+          <td data-sort="32.3">32.3%</td>
+          <td>US</td>
+          <td>chip-lieferkette-nvidia</td>
+          <td>🟢</td>
+        </tr>
+
+        <tr>
+          <td>RTX</td>
+          <td>RTX Corp (Raytheon)</td>
+          <td data-sort="50.6"><span class="score-dot" style="background:#fab219"></span>50.6</td>
+          <td data-sort="223.17">223.17 USD</td>
+          <td data-sort="39.25">39.25</td>
+          <td data-sort="11.8">11.8%</td>
+          <td>US</td>
+          <td>ruestung</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>V</td>
+          <td>Visa</td>
+          <td data-sort="47.9"><span class="score-dot" style="background:#ec835a"></span>47.9</td>
+          <td data-sort="360.495">360.50 USD</td>
+          <td data-sort="31.0">31.0</td>
+          <td data-sort="14.4">14.4%</td>
+          <td>US</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>SU</td>
+          <td>Schneider Electric</td>
+          <td data-sort="47.9"><span class="score-dot" style="background:#ec835a"></span>47.9</td>
+          <td data-sort="308.75">308.75 EUR</td>
+          <td data-sort="31.72">31.72</td>
+          <td data-sort="11.5">11.5%</td>
+          <td>EU (Frankreich)</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>ALV</td>
+          <td>Allianz</td>
+          <td data-sort="47.4"><span class="score-dot" style="background:#ec835a"></span>47.4</td>
+          <td data-sort="438.6">438.60 EUR</td>
+          <td data-sort="13.2">13.2</td>
+          <td data-sort="0">k.A.</td>
+          <td>EU (Deutschland)</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>AIR</td>
+          <td>Airbus</td>
+          <td data-sort="47.3"><span class="score-dot" style="background:#ec835a"></span>47.3</td>
+          <td data-sort="214.25">214.25 EUR</td>
+          <td data-sort="34">34</td>
+          <td data-sort="14">14.0%</td>
+          <td>EU (Frankreich)</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>META</td>
+          <td>Meta Platforms</td>
+          <td data-sort="47.1"><span class="score-dot" style="background:#ec835a"></span>47.1</td>
+          <td data-sort="566.32">566.32 USD</td>
+          <td data-sort="22.23">22.23</td>
+          <td data-sort="27.7">27.7%</td>
+          <td>US</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>IFX</td>
+          <td>Infineon Technologies</td>
+          <td data-sort="44.8"><span class="score-dot" style="background:#ec835a"></span>44.8</td>
+          <td data-sort="61.97">61.97 EUR</td>
+          <td data-sort="0">k.A.</td>
+          <td data-sort="11">11.0%</td>
+          <td>EU (Deutschland)</td>
+          <td>chip-lieferkette-nvidia</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>LDO</td>
+          <td>Leonardo S.p.A.</td>
+          <td data-sort="40.5"><span class="score-dot" style="background:#ec835a"></span>40.5</td>
+          <td data-sort="60.25">60.25 EUR</td>
+          <td data-sort="28.06">28.06</td>
+          <td data-sort="9.8">9.8%</td>
+          <td>EU (Italien)</td>
+          <td>ruestung</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>NOVO-B</td>
+          <td>Novo Nordisk</td>
+          <td data-sort="39.3"><span class="score-dot" style="background:#ec835a"></span>39.3</td>
+          <td data-sort="292.4">292.40 EUR</td>
+          <td data-sort="11.35">11.35</td>
+          <td data-sort="5.6">5.6%</td>
+          <td>EU (Dänemark)</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>HO</td>
+          <td>Thales</td>
+          <td data-sort="38.9"><span class="score-dot" style="background:#ec835a"></span>38.9</td>
+          <td data-sort="266.9">266.90 EUR</td>
+          <td data-sort="34.0">34.0</td>
+          <td data-sort="6.5">6.5%</td>
+          <td>EU (Frankreich)</td>
+          <td>ruestung</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>ENR</td>
+          <td>Siemens Energy</td>
+          <td data-sort="34.6"><span class="score-dot" style="background:#ec835a"></span>34.6</td>
+          <td data-sort="162.8">162.80 EUR</td>
+          <td data-sort="41">41</td>
+          <td data-sort="15">15.0%</td>
+          <td>EU (Deutschland)</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>ASML</td>
+          <td>ASML Holding</td>
+          <td data-sort="33.3"><span class="score-dot" style="background:#ec835a"></span>33.3</td>
+          <td data-sort="1621.2">1621.20 EUR</td>
+          <td data-sort="59.44">59.44</td>
+          <td data-sort="9.8">9.8%</td>
+          <td>EU (Niederlande)</td>
+          <td>chip-lieferkette-nvidia</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>IBE</td>
+          <td>Iberdrola</td>
+          <td data-sort="31.3"><span class="score-dot" style="background:#ec835a"></span>31.3</td>
+          <td data-sort="20.14">20.14 EUR</td>
+          <td data-sort="19.78">19.78</td>
+          <td data-sort="4.4">4.4%</td>
+          <td>EU (Spanien)</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>COST</td>
+          <td>Costco Wholesale</td>
+          <td data-sort="25.1"><span class="score-dot" style="background:#d03b3b"></span>25.1</td>
+          <td data-sort="952.51">952.51 USD</td>
+          <td data-sort="48.34">48.34</td>
+          <td data-sort="9.2">9.2%</td>
+          <td>US</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>RMS</td>
+          <td>Hermès</td>
+          <td data-sort="22.0"><span class="score-dot" style="background:#d03b3b"></span>22.0</td>
+          <td data-sort="1550.0">1550.00 EUR</td>
+          <td data-sort="44.14">44.14</td>
+          <td data-sort="9.2">9.2%</td>
+          <td>EU (Frankreich)</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>SRT3</td>
+          <td>Sartorius</td>
+          <td data-sort="18.3"><span class="score-dot" style="background:#d03b3b"></span>18.3</td>
+          <td data-sort="233.9">233.90 EUR</td>
+          <td data-sort="52.1">52.1</td>
+          <td data-sort="7">7.0%</td>
+          <td>EU (Deutschland)</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>Aktien Recherche Tool · Score-Bänder: 🟢 ≥70 stark · 🟡 ≥50 solide · 🟠 ≥30 durchwachsen · 🔴 &lt;30 schwach</footer>
+</div>
+
+<script>
+function toggleTheme() {
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme');
+  if (current === 'dark') { root.setAttribute('data-theme', 'light'); }
+  else if (current === 'light') { root.removeAttribute('data-theme'); }
+  else { root.setAttribute('data-theme', 'dark'); }
+}
+
+let sortDir = {};
+function sortTable(col) {
+  const table = document.getElementById('main-table');
+  const tbody = table.tBodies[0];
+  const rows = Array.from(tbody.rows);
+  const dir = sortDir[col] = !sortDir[col];
+  rows.sort((a, b) => {
+    const cellA = a.cells[col];
+    const cellB = b.cells[col];
+    const sortA = cellA.dataset.sort !== undefined ? parseFloat(cellA.dataset.sort) : cellA.innerText.toLowerCase();
+    const sortB = cellB.dataset.sort !== undefined ? parseFloat(cellB.dataset.sort) : cellB.innerText.toLowerCase();
+    if (sortA < sortB) return dir ? -1 : 1;
+    if (sortA > sortB) return dir ? 1 : -1;
+    return 0;
+  });
+  rows.forEach(r => tbody.appendChild(r));
+}
+</script>
+</body>
+</html>
