@@ -38,19 +38,19 @@
         "naechste_earnings_datum": "2026-08-26",
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 225.455,
-        "kurs_50t": 206.52,
-        "kurs_200t": 194.75,
+        "preis": 225.01,
+        "kurs_50t": 206.65,
+        "kurs_200t": 194.87,
         "52w_hoch": 235.47,
         "52w_tief": 164.98
       },
-      "score": 69.3,
+      "score": 68.8,
       "subscores": {
         "wachstum": 93.1,
         "bewertung": 34.5,
         "qualitaet": null,
         "momentum": 70.0,
-        "analysten": 84.0
+        "analysten": 80.0
       }
     },
     {
@@ -82,9 +82,9 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 479.625,
-        "kurs_50t": 412.78,
-        "kurs_200t": 431.32,
+        "preis": 480.35,
+        "kurs_50t": 413.82,
+        "kurs_200t": 431.02,
         "52w_hoch": 538.66,
         "52w_tief": 352.83
       },
@@ -126,18 +126,18 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 343.66,
-        "kurs_50t": 353.89,
-        "kurs_200t": 331.1,
+        "preis": 344.0,
+        "kurs_50t": 353.33,
+        "kurs_200t": 331.49,
         "52w_hoch": 402.38,
         "52w_tief": 198.75
       },
-      "score": 68.5,
+      "score": 69.1,
       "subscores": {
         "wachstum": 79.3,
         "bewertung": 89.7,
         "qualitaet": null,
-        "momentum": 20.0,
+        "momentum": 23.3,
         "analysten": 56.0
       }
     },
@@ -170,18 +170,18 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 259.875,
-        "kurs_50t": 248.17,
-        "kurs_200t": 237.7,
+        "preis": 261.31,
+        "kurs_50t": 248.32,
+        "kurs_200t": 237.86,
         "52w_hoch": 284.02,
         "52w_tief": 198.79
       },
-      "score": 69.5,
+      "score": 70.1,
       "subscores": {
         "wachstum": 75.9,
         "bewertung": 79.3,
         "qualitaet": null,
-        "momentum": 46.7,
+        "momentum": 50.0,
         "analysten": 60.0
       }
     },
@@ -214,19 +214,19 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 566.32,
-        "kurs_50t": 597.06,
-        "kurs_200t": 626.83,
+        "preis": 568.97,
+        "kurs_50t": 595.9,
+        "kurs_200t": 625.92,
         "52w_hoch": 777.7,
         "52w_tief": 525.23
       },
-      "score": 47.1,
+      "score": 46.6,
       "subscores": {
         "wachstum": 37.9,
         "bewertung": 72.4,
         "qualitaet": null,
         "momentum": 6.7,
-        "analysten": 72.0
+        "analysten": 68.0
       }
     },
     {
@@ -258,18 +258,18 @@
         "naechste_earnings_datum": "2026-09-02",
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 394.355,
-        "kurs_50t": 390.32,
-        "kurs_200t": 368.22,
+        "preis": 392.43,
+        "kurs_50t": 389.81,
+        "kurs_200t": 368.33,
         "52w_hoch": 480.77,
         "52w_tief": 287.47
       },
-      "score": 51.5,
+      "score": 50.9,
       "subscores": {
         "wachstum": 86.2,
         "bewertung": 6.9,
         "qualitaet": null,
-        "momentum": 40.0,
+        "momentum": 36.7,
         "analysten": 76.0
       }
     },
@@ -302,9 +302,9 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 508.251,
-        "kurs_50t": 510.4,
-        "kurs_200t": 324.33,
+        "preis": 506.0,
+        "kurs_50t": 510.06,
+        "kurs_200t": 325.57,
         "52w_hoch": 580.91,
         "52w_tief": 151.14
       },
@@ -346,9 +346,9 @@
         "naechste_earnings_datum": "2026-09-22",
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 1016.085,
-        "kurs_50t": 960.65,
-        "kurs_200t": 552.44,
+        "preis": 1011.75,
+        "kurs_50t": 960.97,
+        "kurs_200t": 556.39,
         "52w_hoch": 1213.37,
         "52w_tief": 115.6
       },
@@ -390,19 +390,19 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 1190.9,
-        "kurs_50t": 1167.9,
-        "kurs_200t": 1039.85,
+        "preis": 1183.16,
+        "kurs_50t": 1169.09,
+        "kurs_200t": 1041.69,
         "52w_hoch": 1233.79,
         "52w_tief": 690.97
       },
-      "score": 52.7,
+      "score": 51.9,
       "subscores": {
         "wachstum": 82.8,
         "bewertung": 27.6,
         "qualitaet": null,
-        "momentum": 53.3,
-        "analysten": 24.0
+        "momentum": 46.7,
+        "analysten": 28.0
       }
     },
     {
@@ -434,9 +434,9 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 173.68,
-        "kurs_50t": 134.99,
-        "kurs_200t": 152.09,
+        "preis": 172.55,
+        "kurs_50t": 135.6,
+        "kurs_200t": 152.01,
         "52w_hoch": 207.18,
         "52w_tief": 107.27
       },
@@ -478,19 +478,19 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 75.71,
-        "kurs_50t": 72.25,
-        "kurs_200t": 77.59,
+        "preis": 74.99,
+        "kurs_50t": 72.31,
+        "kurs_200t": 77.49,
         "52w_hoch": 100.1,
         "52w_tief": 65.94
       },
-      "score": 51.9,
+      "score": 51.1,
       "subscores": {
         "wachstum": 20.7,
         "bewertung": 93.1,
         "qualitaet": null,
-        "momentum": 26.7,
-        "analysten": 80.0
+        "momentum": 20.0,
+        "analysten": 84.0
       }
     },
     {
@@ -522,9 +522,9 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 360.495,
-        "kurs_50t": 347.88,
-        "kurs_200t": 329.97,
+        "preis": 358.84,
+        "kurs_50t": 348.66,
+        "kurs_200t": 330.05,
         "52w_hoch": 369.78,
         "52w_tief": 294.36
       },
@@ -566,19 +566,19 @@
         "naechste_earnings_datum": "2026-09-24",
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 952.51,
-        "kurs_50t": 949.55,
-        "kurs_200t": 955.81,
+        "preis": 953.5,
+        "kurs_50t": 949.21,
+        "kurs_200t": 955.99,
         "52w_hoch": 1092.58,
         "52w_tief": 846.26
       },
-      "score": 25.1,
+      "score": 24.6,
       "subscores": {
         "wachstum": 31.0,
         "bewertung": 17.2,
         "qualitaet": null,
         "momentum": 16.7,
-        "analysten": 40.0
+        "analysten": 36.0
       }
     },
     {
@@ -610,9 +610,9 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 596.31,
-        "kurs_50t": 542.41,
-        "kurs_200t": 545.89,
+        "preis": 593.74,
+        "kurs_50t": 543.9,
+        "kurs_200t": 546.48,
         "52w_hoch": 672.3,
         "52w_tief": 429.05
       },
@@ -841,13 +841,13 @@
         "52w_tief": 1508.5,
         "notiz_recherche": "KGV-Angaben schwankten zwischen 40 und 50 je nach Quelle/Zeitraum, 44,14 als konkretester Wert gewaehlt."
       },
-      "score": 22.0,
+      "score": 22.5,
       "subscores": {
         "wachstum": 17.2,
         "bewertung": 20.7,
         "qualitaet": null,
         "momentum": 3.3,
-        "analysten": 68.0
+        "analysten": 72.0
       }
     },
     {
@@ -886,12 +886,12 @@
         "52w_tief": 84.04,
         "notiz_recherche": "KGV 41 ist 2026er-Analystenschaetzung (MarketScreener), sinkt laut Quelle auf 29,7 fuer 2027. Umsatzwachstum/Marge sind Konzern-Guidance-Mittelwerte (14-16% bzw. 10-12%)."
       },
-      "score": 34.6,
+      "score": 35.1,
       "subscores": {
         "wachstum": 58.6,
         "bewertung": 24.1,
         "qualitaet": 0.0,
-        "momentum": 50.0,
+        "momentum": 53.3,
         "analysten": null
       }
     },
@@ -976,12 +976,12 @@
         "52w_tief": 31.04,
         "notiz_recherche": "KGV bewusst leer gelassen: Quelle nannte nur Forward-KGV auf Basis 2027er-Schaetzung (~34), nicht vergleichbar mit trailing KGV anderer Titel."
       },
-      "score": 44.8,
+      "score": 45.7,
       "subscores": {
         "wachstum": 34.5,
         "bewertung": null,
         "qualitaet": null,
-        "momentum": 36.7,
+        "momentum": 40.0,
         "analysten": 88.0
       }
     },
@@ -1066,13 +1066,13 @@
         "52w_tief": 187.65,
         "notiz_recherche": "Umsatzwachstum ist Mittelwert der Konzern-Guidance (5-9% waehrungsbereinigt)."
       },
-      "score": 18.3,
+      "score": 18.8,
       "subscores": {
         "wachstum": 10.3,
         "bewertung": 13.8,
         "qualitaet": null,
         "momentum": 30.0,
-        "analysten": 36.0
+        "analysten": 40.0
       }
     },
     {
@@ -1111,13 +1111,13 @@
         "52w_tief": 156.29,
         "notiz_recherche": "Quellen widerspruechlich (KGV 26-38 je nach trailing/forward, Umsatzwachstum 14-28% je nach Quartal) - konservativere/aeltere Werte gewaehlt, beim naechsten Lauf pruefen."
       },
-      "score": 47.3,
+      "score": 46.8,
       "subscores": {
         "wachstum": 55.2,
         "bewertung": 37.9,
         "qualitaet": null,
         "momentum": 60.0,
-        "analysten": 28.0
+        "analysten": 24.0
       }
     },
     {
@@ -1201,12 +1201,12 @@
         "52w_tief": 14.94,
         "notiz_recherche": "Analysten-Kursziel (Mittel ~18,27 EUR) liegt UNTER dem aktuellen Kurs (20,14 EUR) - impliziert laut Quellen bereits ausgereizte Bewertung, bewusst so uebernommen statt beschoenigt."
       },
-      "score": 31.3,
+      "score": 31.9,
       "subscores": {
         "wachstum": 0.0,
         "bewertung": 86.2,
         "qualitaet": null,
-        "momentum": 23.3,
+        "momentum": 26.7,
         "analysten": 0.0
       }
     },
@@ -1374,9 +1374,9 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 223.17,
-        "kurs_50t": 198.88,
-        "kurs_200t": 189.06,
+        "preis": 221.64,
+        "kurs_50t": 199.74,
+        "kurs_200t": 189.29,
         "52w_hoch": 223.38,
         "52w_tief": 149.53
       },
@@ -1391,5 +1391,6 @@
     }
   ],
   "recherchiert_am": "2026-08-17T21:00:00",
-  "neu_bewertet_am": "2026-08-17T20:31:57"
+  "neu_bewertet_am": "2026-08-17T22:33:56",
+  "kurse_aktualisiert_am": "2026-08-17T22:33:56"
 }
