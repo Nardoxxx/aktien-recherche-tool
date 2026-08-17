@@ -75,6 +75,22 @@ Katalysatoren, Termine, Risiken fuer die naechsten Wochen) in `script/letzte_rec
 jedem Swing-Kandidaten angezeigt. Falls das Feld fehlt, zeigt das Dashboard automatisch einen
 Platzhalter-Hinweis - lieber leer lassen als etwas erfinden.
 
+**IPO-Radar (fest eingebaut seit 17.08.2026):** einmal pro Wochenend-Lauf per WebSearch nach aktuellen/
+bevorstehenden Boersengaengen recherchieren (z.B. "bevorstehende IPOs Boersengaenge [aktuelles Jahr]
+Liste"), mit Fokus auf Leonardos Themen (KI/Tech, Ruestung, Chips/Halbleiter - siehe watchlist.yaml
+Cluster). Für jeden relevanten Kandidaten (die 3-6 wichtigsten reichen, nicht erschoepfend) einen Eintrag
+in `script/letzte_recherche.json` unter dem Top-Level-Feld `"ipo_radar"` (Liste von Objekten) anlegen mit
+den Schluesseln: `name`, `ticker` (oder "noch offen"/"noch keiner" falls nicht bekannt), `status` (z.B.
+"bereits gelistet", "geplant", "verschoben", "weit entfernt"), `termin`, `bewertung`, `cluster` (Cluster-
+Name aus watchlist.yaml falls thematisch passend, sonst kurze Themenbeschreibung), `beschreibung` (2-3
+Saetze was das Unternehmen macht) und `einschaetzung` (2-4 Saetze eigene Einordnung: warum interessant,
+was noch fehlt fuer die reguläre Watchlist, Risiken). Titel die bereits handelbar sind (wie SpaceX/SPCX)
+aber noch zu wenig Historie fuer den regulaeren Score haben, bleiben im IPO-Radar bis genug Daten da sind
+- dann manuell in `watchlist.yaml` verschieben. Wird im Dashboard als eigene Karte "🚀 IPO-Radar"
+angezeigt. **Wichtig bei erwähnten KI-Firmen wie Anthropic/OpenAI: Transparenzhinweis auf moeglichen
+Interessenkonflikt ergänzen, da dieses Tool selbst auf einem Anthropic-Modell laeuft - besonders neutral/
+kritisch bewerten statt unreflektiert positiv.**
+
 Zum Schluss: `python3 script/html_dashboard.py --in script/letzte_recherche.json --market
 script/market.json --portfolio reports/portfolio.json --out reports/Dashboard.html` (das
 selbst-enthaltene HTML-Dashboard mit Charts, wird lokal im Browser geoeffnet, nicht in Obsidian) -

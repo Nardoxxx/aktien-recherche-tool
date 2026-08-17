@@ -172,6 +172,31 @@ def build_stat_tiles(market):
     return "\n".join(tiles)
 
 
+def build_ipo_radar(ipo_radar):
+    """Karte fuer bevorstehende/kuerzliche Boersengaenge (IPOs), die (noch) nicht
+    in der regulaeren Watchlist sind - meist weil zu wenig Handelshistorie fuer
+    den regulaeren Score existiert. Rein qualitativ recherchiert (WebSearch),
+    kein Zahlen-Score. Feld 'ipo_radar' ist eine Liste von Objekten mit name,
+    ticker, status, termin, bewertung, cluster, beschreibung, einschaetzung."""
+    if not ipo_radar:
+        return None
+    blocks = []
+    for ipo in ipo_radar:
+        status_class = "ipo-status-live" if "gelistet" in (ipo.get("status") or "") else "ipo-status-pending"
+        blocks.append(f'''
+      <div class="ipo-item">
+        <div class="ipo-item-head">
+          <strong>{esc(ipo.get("name"))}</strong>
+          {f'({esc(ipo.get("ticker"))})' if ipo.get("ticker") and "offen" not in ipo.get("ticker", "") and "steht" not in ipo.get("ticker", "") else ''}
+          <span class="ipo-status {status_class}">{esc(ipo.get("status"))}</span>
+          · {esc(ipo.get("termin"))} · {esc(ipo.get("bewertung"))}
+        </div>
+        <p class="ipo-beschreibung">{esc(ipo.get("beschreibung"))}</p>
+        <p class="ipo-einschaetzung">{esc(ipo.get("einschaetzung"))}</p>
+      </div>''')
+    return "\n".join(blocks)
+
+
 def build_swing_table(titel_list):
     """Eigene, prominente Sektion nur der Swing-Kandidaten (spuerbar unter
     52-Wochen-Hoch UND fundamental weiter solide) - sortiert nach Score. Jeder
@@ -372,6 +397,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .swing-ausblick {{ font-size: 13px; color: var(--text-primary); line-height: 1.5; margin: 0; }}
   .swing-ausblick-fehlt {{ color: var(--text-muted); font-style: italic; }}
   .weltlage-text {{ font-size: 13px; color: var(--text-primary); line-height: 1.6; margin: 0; }}
+  .ipo-item {{ padding: 12px 0; border-bottom: 1px solid var(--grid); }}
+  .ipo-item:last-child {{ border-bottom: none; padding-bottom: 0; }}
+  .ipo-item-head {{ font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }}
+  .ipo-item-head strong {{ color: var(--text-primary); font-size: 14px; }}
+  .ipo-status {{ font-size: 10px; padding: 1px 6px; border-radius: 10px; font-weight: 600; margin: 0 4px; }}
+  .ipo-status-live {{ background: var(--good); color: white; }}
+  .ipo-status-pending {{ background: var(--grid); color: var(--text-secondary); }}
+  .ipo-beschreibung {{ font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin: 0 0 4px; }}
+  .ipo-einschaetzung {{ font-size: 13px; color: var(--text-primary); line-height: 1.5; margin: 0; }}
   footer {{ color: var(--text-muted); font-size: 12px; text-align: center; margin-top: 24px; }}
 </style>
 </head>
@@ -410,6 +444,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   </div>
 
   {swing_card}
+
+  {ipo_card}
 
   {weltlage_card}
 
@@ -509,6 +545,12 @@ def build(data, market=None, portfolio=None):
         if weltlage else ""
     )
 
+    ipo_blocks = build_ipo_radar(data.get("ipo_radar"))
+    ipo_card = (
+        f'<div class="card"><h2>🚀 IPO-Radar (noch nicht in der Watchlist)</h2>{ipo_blocks}</div>'
+        if ipo_blocks else ""
+    )
+
     html = HTML_TEMPLATE.format(
         erzeugt_am=esc(data.get("erzeugt_am", "k.A.")),
         modus=esc(data.get("modus", "k.A.")),
@@ -519,6 +561,7 @@ def build(data, market=None, portfolio=None):
         donut_legend=donut_legend,
         swing_card=swing_card,
         weltlage_card=weltlage_html,
+        ipo_card=ipo_card,
         portfolio_card=portfolio_card,
         table_rows=build_table_rows(titel_list),
     )
