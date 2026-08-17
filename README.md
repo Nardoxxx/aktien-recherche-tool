@@ -30,7 +30,8 @@ python3 script/analyse.py --score-only --in script/letzte_recherche.json --out s
 python3 script/market_overview.py --out script/market.json
 python3 script/dashboard_notes.py --in script/letzte_recherche.json --out-dir reports/titel
 python3 script/report_template.py --in script/letzte_recherche.json --type daily --out "reports/YYYY-MM-DD.md"
-```//
+python3 script/html_dashboard.py --in script/letzte_recherche.json --market script/market.json --out reports/Dashboard.html
+```
 Danach: Markt-/News-Einordnung fuer Titel mit auffaelliger Kursbewegung (>5%) per WebSearch ergaenzen,
 alle `<!-- AGENT: ... -->`-Platzhalter im generierten Report durch echten Text ersetzen (siehe
 `report_template.py`-Docstring fuer die Bedeutung jedes Platzhalters). Bei `market.json` mit
@@ -47,6 +48,9 @@ Fundamentaldaten per WebSearch/WebFetch recherchieren und ins JSON eintragen (Fe
 reports/portfolio.json` ausfuehren und daraus `reports/Portfolio-Vorschlag.md` bauen (Format wie
 vorheriger manueller Lauf, siehe Git-Historie/erste committete Version als Vorlage). Danach in
 `reports/Performance-Tracking.md` fuer jeden Titel eine neue Log-Zeile ergaenzen (Datum, Score, Kurs).
+Zum Schluss: `python3 script/html_dashboard.py --in script/letzte_recherche.json --market
+script/market.json --portfolio reports/portfolio.json --out reports/Dashboard.html` (das
+selbst-enthaltene HTML-Dashboard mit Charts, wird lokal im Browser geoeffnet, nicht in Obsidian).
 
 ## Score-Formel
 
