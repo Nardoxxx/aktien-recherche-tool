@@ -30,7 +30,13 @@ python3 script/analyse.py --score-only --in script/letzte_recherche.json --out s
 python3 script/market_overview.py --out script/market.json
 python3 script/dashboard_notes.py --in script/letzte_recherche.json --out-dir reports/titel
 python3 script/report_template.py --in script/letzte_recherche.json --type daily --out "reports/YYYY-MM-DD.md"
-python3 script/html_dashboard.py --in script/letzte_recherche.json --market script/market.json --out reports/Dashboard.html
+```
+Fuer den letzten Schritt (Dashboard): falls `script/portfolio.json` bereits existiert (aus einem
+frueheren Wochenend-Lauf), mit einbeziehen, sonst ohne `--portfolio`:
+```bash
+python3 script/html_dashboard.py --in script/letzte_recherche.json --market script/market.json \
+  $( [ -f script/portfolio.json ] && echo "--portfolio script/portfolio.json" ) \
+  --out reports/Dashboard.html
 ```
 Danach: Markt-/News-Einordnung fuer Titel mit auffaelliger Kursbewegung (>5%) per WebSearch ergaenzen,
 alle `<!-- AGENT: ... -->`-Platzhalter im generierten Report durch echten Text ersetzen (siehe
