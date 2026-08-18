@@ -4,8 +4,8 @@ ticker: "NOVO-B"
 name: "Novo Nordisk"
 region: "EU (Dänemark)"
 cluster: null
-score: 39.3
-kurs: 292.4
+score: 40.7
+kurs: 296.35
 waehrung: "EUR"
 kgv: 11.35
 umsatzwachstum_yoy: 5.6
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: 4.8
 score_wachstum: 3.4
 score_bewertung: 100.0
 score_qualitaet: null
-score_momentum: 10.0
+score_momentum: 16.7
 score_analysten: null
-abstand_52w_hoch_pct: -23.7
+abstand_52w_hoch_pct: -22.6
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: null
-letzte_aktualisierung: "2026-08-17"
+letzte_aktualisierung: "2026-08-18"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

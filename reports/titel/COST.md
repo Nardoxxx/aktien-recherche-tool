@@ -4,8 +4,8 @@ ticker: "COST"
 name: "Costco Wholesale"
 region: "US"
 cluster: null
-score: 24.6
-kurs: 953.5
+score: 27.7
+kurs: 961.35
 waehrung: "USD"
 kgv: 48.34
 umsatzwachstum_yoy: 9.2
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: 12.7
 score_wachstum: 31.0
 score_bewertung: 17.2
 score_qualitaet: null
-score_momentum: 16.7
+score_momentum: 33.3
 score_analysten: 36.0
-abstand_52w_hoch_pct: -12.7
+abstand_52w_hoch_pct: -12.0
 swing_kandidat: false
 naechste_earnings_datum: "2026-09-24"
 analysten_kursziel: 1077.31
-letzte_aktualisierung: "2026-08-17"
+letzte_aktualisierung: "2026-08-18"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

@@ -5,7 +5,7 @@ name: "Leonardo S.p.A."
 region: "EU (Italien)"
 cluster: "ruestung"
 score: 40.5
-kurs: 60.25
+kurs: 59.245
 waehrung: "EUR"
 kgv: 28.06
 umsatzwachstum_yoy: 9.8
@@ -15,11 +15,11 @@ score_bewertung: 55.2
 score_qualitaet: null
 score_momentum: 73.3
 score_analysten: 4.0
-abstand_52w_hoch_pct: -5.4
+abstand_52w_hoch_pct: -7.0
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 57.5
-letzte_aktualisierung: "2026-08-17"
+letzte_aktualisierung: "2026-08-18"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

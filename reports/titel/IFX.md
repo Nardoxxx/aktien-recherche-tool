@@ -4,8 +4,8 @@ ticker: "IFX"
 name: "Infineon Technologies"
 region: "EU (Deutschland)"
 cluster: "chip-lieferkette-nvidia"
-score: 45.7
-kurs: 61.97
+score: 39.0
+kurs: 57.24
 waehrung: "EUR"
 kgv: null
 umsatzwachstum_yoy: 11
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: null
 score_wachstum: 34.5
 score_bewertung: null
 score_qualitaet: null
-score_momentum: 40.0
-score_analysten: 88.0
-abstand_52w_hoch_pct: -29.6
+score_momentum: 10.0
+score_analysten: 96.0
+abstand_52w_hoch_pct: -35.0
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 86.71
-letzte_aktualisierung: "2026-08-17"
+letzte_aktualisierung: "2026-08-18"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
