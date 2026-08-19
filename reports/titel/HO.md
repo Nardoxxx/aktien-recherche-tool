@@ -4,8 +4,8 @@ ticker: "HO"
 name: "Thales"
 region: "EU (Frankreich)"
 cluster: "ruestung"
-score: 37.8
-kurs: 266.0
+score: 36.6
+kurs: 259.8
 waehrung: "EUR"
 kgv: 34.0
 umsatzwachstum_yoy: 6.5
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: null
 score_wachstum: 6.9
 score_bewertung: 37.9
 score_qualitaet: null
-score_momentum: 63.3
+score_momentum: 56.7
 score_analysten: 92.0
-abstand_52w_hoch_pct: -2.2
+abstand_52w_hoch_pct: -4.5
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 380
-letzte_aktualisierung: "2026-08-18"
+letzte_aktualisierung: "2026-08-19"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

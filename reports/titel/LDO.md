@@ -4,8 +4,8 @@ ticker: "LDO"
 name: "Leonardo S.p.A."
 region: "EU (Italien)"
 cluster: "ruestung"
-score: 40.5
-kurs: 59.245
+score: 41.2
+kurs: 58.855
 waehrung: "EUR"
 kgv: 28.06
 umsatzwachstum_yoy: 9.8
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: null
 score_wachstum: 24.1
 score_bewertung: 55.2
 score_qualitaet: null
-score_momentum: 73.3
+score_momentum: 76.7
 score_analysten: 4.0
-abstand_52w_hoch_pct: -7.0
+abstand_52w_hoch_pct: -7.6
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 57.5
-letzte_aktualisierung: "2026-08-18"
+letzte_aktualisierung: "2026-08-19"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

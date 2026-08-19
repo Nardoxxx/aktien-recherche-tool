@@ -5,7 +5,7 @@ name: "Infineon Technologies"
 region: "EU (Deutschland)"
 cluster: "chip-lieferkette-nvidia"
 score: 39.0
-kurs: 57.24
+kurs: 54.98
 waehrung: "EUR"
 kgv: null
 umsatzwachstum_yoy: 11
@@ -15,11 +15,11 @@ score_bewertung: null
 score_qualitaet: null
 score_momentum: 10.0
 score_analysten: 96.0
-abstand_52w_hoch_pct: -35.0
+abstand_52w_hoch_pct: -37.5
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 86.71
-letzte_aktualisierung: "2026-08-18"
+letzte_aktualisierung: "2026-08-19"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
