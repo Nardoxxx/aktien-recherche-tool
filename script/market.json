@@ -1,49 +1,8 @@
 {
-  "erzeugt_am": "2026-08-19T22:50:50",
+  "erzeugt_am": "2026-08-20T23:07:38",
   "modus": "live",
   "krise_schwelle_pct": -7.0,
   "lookback_tage": 130,
   "krise_erkannt": false,
-  "indizes": {
-    "S&P 500": {
-      "name": "S&P 500",
-      "symbol": "GSPC.INDX",
-      "aktuell": 7707.98,
-      "hoch_lookback": 7798.99,
-      "abstand_vom_hoch_pct": -1.17,
-      "in_korrektur": false
-    },
-    "Nasdaq 100": {
-      "name": "Nasdaq 100",
-      "symbol": "NDX.INDX",
-      "aktuell": 29426.02,
-      "hoch_lookback": 30660.6,
-      "abstand_vom_hoch_pct": -4.03,
-      "in_korrektur": false
-    },
-    "DAX": {
-      "name": "DAX",
-      "symbol": "GDAXI.INDX",
-      "aktuell": 26091.33,
-      "hoch_lookback": 26440.31,
-      "abstand_vom_hoch_pct": -1.32,
-      "in_korrektur": false
-    },
-    "Euro Stoxx 50": {
-      "name": "Euro Stoxx 50",
-      "symbol": "STOXX50E.INDX",
-      "aktuell": 6444.46,
-      "hoch_lookback": 6551.22,
-      "abstand_vom_hoch_pct": -1.63,
-      "in_korrektur": false
-    },
-    "VIX": {
-      "name": "VIX",
-      "symbol": "VIX.INDX",
-      "aktuell": 14.89,
-      "hoch_lookback": 31.05,
-      "abstand_vom_hoch_pct": -52.05,
-      "in_korrektur": false
-    }
-  }
+  "indizes": {}
 }

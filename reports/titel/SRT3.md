@@ -4,7 +4,7 @@ ticker: "SRT3"
 name: "Sartorius"
 region: "EU (Deutschland)"
 cluster: null
-score: 20.1
+score: 19.6
 kurs: 234.7
 waehrung: "EUR"
 kgv: 52.1
@@ -14,12 +14,12 @@ score_wachstum: 10.3
 score_bewertung: 13.8
 score_qualitaet: null
 score_momentum: 36.7
-score_analysten: 40.0
+score_analysten: 36.0
 abstand_52w_hoch_pct: -11.2
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 264.44
-letzte_aktualisierung: "2026-08-19"
+letzte_aktualisierung: "2026-08-20"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
