@@ -5,7 +5,7 @@ name: "Eli Lilly"
 region: "US"
 cluster: null
 score: 56.7
-kurs: 1246.93
+kurs: 1233.66
 waehrung: "USD"
 kgv: 39.62
 umsatzwachstum_yoy: 49.6
@@ -15,11 +15,11 @@ score_bewertung: 27.6
 score_qualitaet: null
 score_momentum: 80.0
 score_analysten: 16.0
-abstand_52w_hoch_pct: -2.6
+abstand_52w_hoch_pct: -3.6
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 1299.56
-letzte_aktualisierung: "2026-08-24"
+letzte_aktualisierung: "2026-08-25"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
