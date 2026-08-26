@@ -4,7 +4,7 @@ ticker: "ALV"
 name: "Allianz"
 region: "EU (Deutschland)"
 cluster: null
-score: 48.8
+score: 49.4
 kurs: 438.0
 waehrung: "EUR"
 kgv: 13.2
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: 7
 score_wachstum: 10.3
 score_bewertung: 96.6
 score_qualitaet: null
-score_momentum: 73.3
+score_momentum: 76.7
 score_analysten: 8.0
 abstand_52w_hoch_pct: -1.1
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 438.62
-letzte_aktualisierung: "2026-08-25"
+letzte_aktualisierung: "2026-08-26"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
