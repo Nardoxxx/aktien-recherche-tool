@@ -44,13 +44,13 @@
         "52w_hoch": 235.47,
         "52w_tief": 164.98
       },
-      "score": 63.7,
+      "score": 64.2,
       "subscores": {
         "wachstum": 93.1,
         "bewertung": 34.5,
         "qualitaet": null,
         "momentum": 40.0,
-        "analysten": 84.0
+        "analysten": 88.0
       }
     },
     {
@@ -82,20 +82,20 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 496.37,
-        "kurs_50t": 425.03,
-        "kurs_200t": 429.28,
+        "preis": 505.06,
+        "kurs_50t": 427.27,
+        "kurs_200t": 429.34,
         "52w_hoch": 537.65,
         "52w_tief": 352.17,
         "swing_ausblick": "Kursrücksetzer trotz starkem Azure-Ausblick (+45% erwartet für Q1 GJ2027), Sorge gilt den hohen KI-Investitionen (175 Mrd. USD 2026). Analysten-Kursziel impliziert noch ca. 42% Luft nach oben. Katalysator in den nächsten Wochen: Vorstellung des eigenen KI-Chips Maia 300 im September."
       },
-      "score": 64.6,
+      "score": 64.7,
       "subscores": {
         "wachstum": 65.5,
         "bewertung": 58.6,
         "qualitaet": null,
-        "momentum": 86.7,
-        "analysten": 44.0
+        "momentum": 90.0,
+        "analysten": 40.0
       }
     },
     {
@@ -127,11 +127,11 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 342.0,
-        "kurs_50t": 350.77,
-        "kurs_200t": 333.73,
+        "preis": 340.65,
+        "kurs_50t": 350.12,
+        "kurs_200t": 334.04,
         "52w_hoch": 402.38,
-        "52w_tief": 206.55,
+        "52w_tief": 206.89,
         "swing_ausblick": "Rekordzahlen bei Google Cloud (+82% YoY, Auftragsbestand 514 Mrd. USD, erstmals positives EBITDA), aber Kartellverfahren um die Anzeigenbörse (mögliche Zwangsabspaltung) belastet. Nächster Prüfstein: Q3-Zahlen im Oktober, dann zeigt sich ob Effizienz die KI-Kosten ausgleicht."
       },
       "score": 69.3,
@@ -172,18 +172,18 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 260.28,
-        "kurs_50t": 250.88,
-        "kurs_200t": 238.53,
+        "preis": 256.26,
+        "kurs_50t": 251.08,
+        "kurs_200t": 238.59,
         "52w_hoch": 284.02,
         "52w_tief": 198.79
       },
-      "score": 69.6,
+      "score": 68.4,
       "subscores": {
         "wachstum": 75.9,
         "bewertung": 79.3,
         "qualitaet": null,
-        "momentum": 50.0,
+        "momentum": 43.3,
         "analysten": 56.0
       }
     },
@@ -222,12 +222,12 @@
         "52w_hoch": 777.7,
         "52w_tief": 525.23
       },
-      "score": 48.3,
+      "score": 47.7,
       "subscores": {
         "wachstum": 37.9,
         "bewertung": 72.4,
         "qualitaet": null,
-        "momentum": 13.3,
+        "momentum": 10.0,
         "analysten": 72.0
       }
     },
@@ -260,20 +260,20 @@
         "naechste_earnings_datum": "2026-09-02",
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 355.59,
-        "kurs_50t": 386.65,
-        "kurs_200t": 368.33,
+        "preis": 371.54,
+        "kurs_50t": 386.56,
+        "kurs_200t": 368.45,
         "52w_hoch": 480.77,
         "52w_tief": 292.92,
         "swing_ausblick": "Q3-Zahlen am 02.09. sind der nächste große Katalysator - Frage ist ob die Marke von 500 USD fällt. KI-Chip-Umsatz zuletzt +143% YoY, aber hohe Erwartungen sind bereits eingepreist, entsprechend anfällig für Enttäuschungen."
       },
-      "score": 47.9,
+      "score": 48.2,
       "subscores": {
         "wachstum": 86.2,
         "bewertung": 6.9,
         "qualitaet": null,
-        "momentum": 10.0,
-        "analysten": 92.0
+        "momentum": 20.0,
+        "analysten": 80.0
       }
     },
     {
@@ -305,20 +305,20 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 479.18,
-        "kurs_50t": 508.95,
-        "kurs_200t": 332.01,
+        "preis": 476.67,
+        "kurs_50t": 507.01,
+        "kurs_200t": 334.44,
         "52w_hoch": 580.91,
         "52w_tief": 151.14,
         "swing_ausblick": "Konferenz 'Advancing AI 2026' in den kommenden Wochen zeigt, ob milliardenschwere Zusagen an Meta, OpenAI und Microsoft zu echter, lieferbarer Hardware werden. Hohes Forward-KGV macht die Aktie anfällig für Rücksetzer bei jeder Verzögerung."
       },
-      "score": 59.7,
+      "score": 60.2,
       "subscores": {
         "wachstum": 89.7,
         "bewertung": 3.4,
         "qualitaet": null,
         "momentum": 93.3,
-        "analysten": 60.0
+        "analysten": 64.0
       }
     },
     {
@@ -350,11 +350,11 @@
         "naechste_earnings_datum": "2026-09-22",
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 938.4,
-        "kurs_50t": 958.88,
-        "kurs_200t": 581.39,
+        "preis": 935.39,
+        "kurs_50t": 957.17,
+        "kurs_200t": 584.88,
         "52w_hoch": 1213.37,
-        "52w_tief": 116.31,
+        "52w_tief": 117.56,
         "swing_ausblick": "HBM-Speicher bereits bis Ende 2026 ausverkauft, Nachfrage übersteigt Angebot um geschätzt 50-67%. Nächste Zahlen am 22.09. Höchster Score der gesamten Watchlist bei gleichzeitig deutlichem Kursrücksetzer - genau die Kombination, für die dieses Tool gebaut wurde."
       },
       "score": 92.5,
@@ -395,18 +395,18 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 1189.41,
-        "kurs_50t": 1183.14,
-        "kurs_200t": 1054.33,
+        "preis": 1176.1,
+        "kurs_50t": 1184.24,
+        "kurs_200t": 1055.61,
         "52w_hoch": 1280.34,
         "52w_tief": 710.11
       },
-      "score": 53.2,
+      "score": 51.9,
       "subscores": {
         "wachstum": 82.8,
         "bewertung": 27.6,
         "qualitaet": null,
-        "momentum": 53.3,
+        "momentum": 46.7,
         "analysten": 28.0
       }
     },
@@ -439,20 +439,20 @@
         "naechste_earnings_datum": null,
         "naechste_earnings_eps_schaetzung": null,
         "quelle": "eodhd-free+recherche (diverse Quellen, 17.08.2026)",
-        "preis": 177.5,
-        "kurs_50t": 141.58,
-        "kurs_200t": 151.37,
+        "preis": 185.93,
+        "kurs_50t": 142.63,
+        "kurs_200t": 151.41,
         "52w_hoch": 207.18,
         "52w_tief": 107.27,
         "swing_ausblick": "Rekordquartal, Jahresprognose auf +82% Umsatzwachstum angehoben. Nächster Prüfstein: Q3-Umsatzspanne von 2,16-2,164 Mrd. USD - wird sie eingehalten, dürfte die Bewertungsdiskussion in den Hintergrund treten, sonst drohen scharfe Korrekturen."
       },
-      "score": 56.9,
+      "score": 56.4,
       "subscores": {
         "wachstum": 96.6,
         "bewertung": 0.0,
         "qualitaet": null,
         "momentum": 96.7,
-        "analysten": 20.0
+        "analysten": 16.0
       }
     },
     {
@@ -491,13 +491,13 @@
         "52w_tief": 65.94,
         "swing_ausblick": "Schwacher eigener Ausblick löste den Kursrutsch aus. Analysten sehen trotzdem deutliches Aufholpotenzial - der Konsens-Kursziel liegt klar über dem aktuellen Kurs. Volatiler Titel, kein Selbstläufer."
       },
-      "score": 53.0,
+      "score": 53.7,
       "subscores": {
         "wachstum": 20.7,
         "bewertung": 93.1,
         "qualitaet": null,
-        "momentum": 43.3,
-        "analysten": 64.0
+        "momentum": 50.0,
+        "analysten": 60.0
       }
     },
     {
@@ -535,13 +535,13 @@
         "52w_hoch": 369.78,
         "52w_tief": 294.36
       },
-      "score": 49.9,
+      "score": 50.4,
       "subscores": {
         "wachstum": 48.3,
         "bewertung": 51.7,
         "qualitaet": null,
         "momentum": 56.7,
-        "analysten": 40.0
+        "analysten": 44.0
       }
     },
     {
@@ -579,12 +579,12 @@
         "52w_hoch": 1092.58,
         "52w_tief": 846.26
       },
-      "score": 26.7,
+      "score": 26.1,
       "subscores": {
         "wachstum": 31.0,
         "bewertung": 17.2,
         "qualitaet": null,
-        "momentum": 20.0,
+        "momentum": 16.7,
         "analysten": 48.0
       }
     },
@@ -715,12 +715,12 @@
         "notiz_recherche": "Kursziel 242,92 $ war USD-ADR-Wert (NYSE), passt nicht zur EUR-Xetra-Notierung - nicht uebernommen.",
         "swing_ausblick": "Nach starker Erholung (+30% in vier Wochen) weiter solides Cloud-Wachstum (+24%), aber die operative Gewinnprognose wurde wegen KI-Investitionen gesenkt. Nächster Prüfstein: Q3-Zahlen, die zeigen ob die Prognosekorrektur einmalig war oder sich fortsetzt."
       },
-      "score": 60.7,
+      "score": 60.0,
       "subscores": {
         "wachstum": 44.8,
         "bewertung": 62.1,
         "qualitaet": null,
-        "momentum": 90.0,
+        "momentum": 86.7,
         "analysten": null
       }
     },
@@ -1031,12 +1031,12 @@
         "52w_tief": 93.73,
         "notiz_recherche": "Kursziel 155,37 $ war USD-ADR-Wert (NYSE: NVS), passt nicht zur CHF-Schweiz-Notierung - nicht uebernommen."
       },
-      "score": 55.6,
+      "score": 57.0,
       "subscores": {
         "wachstum": 51.7,
         "bewertung": 65.5,
         "qualitaet": null,
-        "momentum": 46.7,
+        "momentum": 53.3,
         "analysten": null
       }
     },
@@ -1257,13 +1257,13 @@
         "notiz_recherche": "Kursziel-Spannen extrem breit (1600-2300 EUR je nach Analyst) - Konsens-Mitte ~1700 EUR gewaehlt. Umsatzwachstum-Guidance 40-45% (Konzern) vs. 25-30% (konservativere Analysten) - Konzern-Guidance-Mitte gewaehlt. Naechster Quartalsbericht nicht klar recherchiert (letzter war 06.08.2026); zusaetzlich relevant fuer die Aktie: Bundestag-Entscheidung zu 'Arminius' am 09.12.2026.",
         "swing_ausblick": "Kurs seit Herbst-Hoch über 50% korrigiert, trotz Rekord-Auftragsbestand (73 Mrd. EUR, +31%) und Umsatzguidance von bis zu +45% für 2026. Viele Analysten werten die Korrektur als Konsolidierung, nicht als Trendbruch - Kursziele liegen mit rund 1.700 EUR deutlich über dem aktuellen Niveau."
       },
-      "score": 63.4,
+      "score": 63.3,
       "subscores": {
         "wachstum": 72.4,
         "bewertung": 44.8,
         "qualitaet": 100.0,
-        "momentum": 16.7,
-        "analysten": 80.0
+        "momentum": 13.3,
+        "analysten": 84.0
       }
     },
     {
@@ -1347,13 +1347,13 @@
         "52w_tief": 215.61,
         "notiz_recherche": "KGV-Angaben schwankten zwischen 27,5 und 34 je nach Quelle, hoeherer Wert gewaehlt (konservativer fuer den Bewertungs-Score)."
       },
-      "score": 37.9,
+      "score": 38.4,
       "subscores": {
         "wachstum": 6.9,
         "bewertung": 37.9,
         "qualitaet": null,
         "momentum": 66.7,
-        "analysten": 88.0
+        "analysten": 92.0
       }
     },
     {
@@ -1391,19 +1391,19 @@
         "52w_hoch": 225.49,
         "52w_tief": 149.53
       },
-      "score": 50.6,
+      "score": 51.1,
       "subscores": {
         "wachstum": 62.1,
         "bewertung": 31.0,
         "qualitaet": null,
         "momentum": 83.3,
-        "analysten": 16.0
+        "analysten": 20.0
       }
     }
   ],
   "recherchiert_am": "2026-08-17T21:00:00",
-  "neu_bewertet_am": "2026-08-26T23:43:44",
-  "kurse_aktualisiert_am": "2026-08-26T23:43:44",
+  "neu_bewertet_am": "2026-08-27T23:13:26",
+  "kurse_aktualisiert_am": "2026-08-27T23:13:26",
   "weltlage_notiz": "Geopolitisches Risiko bleibt laut aktueller Recherche (17.08.2026) die dominante Variable fuer Anlegerverhalten: Iran-Konflikt (Oelpreis-Risiko rund um die Straße von Hormus, zuletzt entspannt), eingefahrener US-China-Handelskonflikt, wachsende politische Instabilitaet in Europa. Umfeld fuer risikobehaftete Anlagen bleibt trotzdem grundsaetzlich konstruktiv (verbesserte globale Wachstumsindikatoren), erfordert aber differenzierte Einordnung wegen Inflation, Geopolitik und Klimarisiken zusammen.",
   "ipo_radar": [
     {
