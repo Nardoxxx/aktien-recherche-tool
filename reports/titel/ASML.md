@@ -4,7 +4,7 @@ ticker: "ASML"
 name: "ASML Holding"
 region: "EU (Niederlande)"
 cluster: "chip-lieferkette-nvidia"
-score: 29.0
+score: 28.3
 kurs: 1505.4
 waehrung: "EUR"
 kgv: 59.44
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: null
 score_wachstum: 24.1
 score_bewertung: 10.3
 score_qualitaet: null
-score_momentum: 70.0
+score_momentum: 66.7
 score_analysten: null
 abstand_52w_hoch_pct: -12.4
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: null
-letzte_aktualisierung: "2026-08-27"
+letzte_aktualisierung: "2026-08-29"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

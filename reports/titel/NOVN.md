@@ -4,7 +4,7 @@ ticker: "NOVN"
 name: "Novartis"
 region: "EU (Schweiz)"
 cluster: null
-score: 57.0
+score: 55.6
 kurs: 127.12
 waehrung: "EUR"
 kgv: 22.48
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: 17.11
 score_wachstum: 51.7
 score_bewertung: 65.5
 score_qualitaet: null
-score_momentum: 53.3
+score_momentum: 46.7
 score_analysten: null
 abstand_52w_hoch_pct: -2.5
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: null
-letzte_aktualisierung: "2026-08-27"
+letzte_aktualisierung: "2026-08-29"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
