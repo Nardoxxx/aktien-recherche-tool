@@ -4,8 +4,8 @@ ticker: "AMZN"
 name: "Amazon"
 region: "US"
 cluster: null
-score: 72.9
-kurs: 266.43
+score: 69.1
+kurs: 259.77
 waehrung: "USD"
 kgv: 21.12
 umsatzwachstum_yoy: 15.8
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: 91.6
 score_wachstum: 75.9
 score_bewertung: 79.3
 score_qualitaet: null
-score_momentum: 70.0
+score_momentum: 50.0
 score_analysten: 52.0
-abstand_52w_hoch_pct: -6.2
+abstand_52w_hoch_pct: -8.5
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 326.07
-letzte_aktualisierung: "2026-08-29"
+letzte_aktualisierung: "2026-09-01"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

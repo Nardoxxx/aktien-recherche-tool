@@ -19,7 +19,7 @@ abstand_52w_hoch_pct: -40.1
 swing_kandidat: true
 naechste_earnings_datum: null
 analysten_kursziel: 1700
-letzte_aktualisierung: "2026-08-29"
+letzte_aktualisierung: "2026-09-01"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
