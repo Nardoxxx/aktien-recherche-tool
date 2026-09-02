@@ -4,7 +4,7 @@ ticker: "AIR"
 name: "Airbus"
 region: "EU (Frankreich)"
 cluster: null
-score: 47.8
+score: 46.8
 kurs: 209.8
 waehrung: "EUR"
 kgv: 34
@@ -14,7 +14,7 @@ score_wachstum: 55.2
 score_bewertung: 37.9
 score_qualitaet: null
 score_momentum: 60.0
-score_analysten: 32.0
+score_analysten: 24.0
 abstand_52w_hoch_pct: -3.0
 swing_kandidat: false
 naechste_earnings_datum: null

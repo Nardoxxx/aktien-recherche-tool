@@ -4,8 +4,8 @@ ticker: "META"
 name: "Meta Platforms"
 region: "US"
 cluster: null
-score: 47.8
-kurs: 578.02
+score: 47.0
+kurs: 592.85
 waehrung: "USD"
 kgv: 22.23
 umsatzwachstum_yoy: 27.7
@@ -13,9 +13,9 @@ gewinnwachstum_yoy: -4.8
 score_wachstum: 37.9
 score_bewertung: 72.4
 score_qualitaet: null
-score_momentum: 13.3
-score_analysten: 68.0
-abstand_52w_hoch_pct: -25.7
+score_momentum: 16.7
+score_analysten: 56.0
+abstand_52w_hoch_pct: -23.8
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 754.14

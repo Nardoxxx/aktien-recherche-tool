@@ -4,7 +4,7 @@ ticker: "COST"
 name: "Costco Wholesale"
 region: "US"
 cluster: null
-score: 26.1
+score: 26.7
 kurs: 933.51
 waehrung: "USD"
 kgv: 48.34
@@ -13,7 +13,7 @@ gewinnwachstum_yoy: 12.7
 score_wachstum: 31.0
 score_bewertung: 17.2
 score_qualitaet: null
-score_momentum: 16.7
+score_momentum: 20.0
 score_analysten: 48.0
 abstand_52w_hoch_pct: -14.6
 swing_kandidat: false

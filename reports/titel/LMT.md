@@ -4,7 +4,7 @@ ticker: "LMT"
 name: "Lockheed Martin"
 region: "US"
 cluster: "ruestung"
-score: 61.1
+score: 60.6
 kurs: 589.15
 waehrung: "USD"
 kgv: 22.43
@@ -14,7 +14,7 @@ score_wachstum: 69.0
 score_bewertung: 69.0
 score_qualitaet: null
 score_momentum: 56.7
-score_analysten: 24.0
+score_analysten: 20.0
 abstand_52w_hoch_pct: -12.4
 swing_kandidat: true
 naechste_earnings_datum: null
@@ -28,4 +28,4 @@ quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 Automatisch generierte Dashboard-Notiz, wird bei jedem Lauf ueberschrieben. Vollstaendiger Report mit Begruendung: siehe jeweils aktuellster Wochen-/Tagesreport in [[03 Bereiche/Finanzen und Vermögensaufbau/Aktien Reports/]].
 
 > [!tip] Swing-Kandidat
-> -12.4% unter 52-Wochen-Hoch bei weiterhin solidem Score (61.1) - moeglicher Dip-Einstieg, kein Freibrief. Immer erst den aktuellen Report pruefen.
+> -12.4% unter 52-Wochen-Hoch bei weiterhin solidem Score (60.6) - moeglicher Dip-Einstieg, kein Freibrief. Immer erst den aktuellen Report pruefen.

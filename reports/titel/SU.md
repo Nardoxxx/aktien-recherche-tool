@@ -4,7 +4,7 @@ ticker: "SU"
 name: "Schneider Electric"
 region: "EU (Frankreich)"
 cluster: null
-score: 45.9
+score: 45.2
 kurs: 294.0
 waehrung: "EUR"
 kgv: 31.72
@@ -13,7 +13,7 @@ gewinnwachstum_yoy: null
 score_wachstum: 41.4
 score_bewertung: 48.3
 score_qualitaet: null
-score_momentum: 73.3
+score_momentum: 70.0
 score_analysten: 12.0
 abstand_52w_hoch_pct: -5.5
 swing_kandidat: false
