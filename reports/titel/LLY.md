@@ -4,8 +4,8 @@ ticker: "LLY"
 name: "Eli Lilly"
 region: "US"
 cluster: null
-score: 51.3
-kurs: 1160.08
+score: 52.3
+kurs: 1159.6
 waehrung: "USD"
 kgv: 39.62
 umsatzwachstum_yoy: 49.6
@@ -14,12 +14,12 @@ score_wachstum: 82.8
 score_bewertung: 27.6
 score_qualitaet: null
 score_momentum: 43.3
-score_analysten: 28.0
+score_analysten: 36.0
 abstand_52w_hoch_pct: -9.4
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 1299.56
-letzte_aktualisierung: "2026-09-02"
+letzte_aktualisierung: "2026-09-03"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

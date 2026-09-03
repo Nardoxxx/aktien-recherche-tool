@@ -4,8 +4,8 @@ ticker: "GOOGL"
 name: "Alphabet"
 region: "US"
 cluster: null
-score: 68.6
-kurs: 337.12
+score: 69.1
+kurs: 342.48
 waehrung: "USD"
 kgv: 17.36
 umsatzwachstum_yoy: 20.1
@@ -14,12 +14,12 @@ score_wachstum: 79.3
 score_bewertung: 89.7
 score_qualitaet: null
 score_momentum: 23.3
-score_analysten: 52.0
-abstand_52w_hoch_pct: -16.2
+score_analysten: 56.0
+abstand_52w_hoch_pct: -14.9
 swing_kandidat: true
 naechste_earnings_datum: null
 analysten_kursziel: 428.04
-letzte_aktualisierung: "2026-09-02"
+letzte_aktualisierung: "2026-09-03"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
@@ -28,4 +28,4 @@ quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 Automatisch generierte Dashboard-Notiz, wird bei jedem Lauf ueberschrieben. Vollstaendiger Report mit Begruendung: siehe jeweils aktuellster Wochen-/Tagesreport in [[03 Bereiche/Finanzen und Vermögensaufbau/Aktien Reports/]].
 
 > [!tip] Swing-Kandidat
-> -16.2% unter 52-Wochen-Hoch bei weiterhin solidem Score (68.6) - moeglicher Dip-Einstieg, kein Freibrief. Immer erst den aktuellen Report pruefen.
+> -14.9% unter 52-Wochen-Hoch bei weiterhin solidem Score (69.1) - moeglicher Dip-Einstieg, kein Freibrief. Immer erst den aktuellen Report pruefen.
