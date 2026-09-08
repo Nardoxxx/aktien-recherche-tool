@@ -5,7 +5,7 @@ name: "Amazon"
 region: "US"
 cluster: null
 score: 69.5
-kurs: 258.9
+kurs: 258.51
 waehrung: "USD"
 kgv: 21.12
 umsatzwachstum_yoy: 15.8
@@ -15,11 +15,11 @@ score_bewertung: 79.3
 score_qualitaet: null
 score_momentum: 46.7
 score_analysten: 60.0
-abstand_52w_hoch_pct: -8.8
+abstand_52w_hoch_pct: -9.0
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 326.07
-letzte_aktualisierung: "2026-09-05"
+letzte_aktualisierung: "2026-09-08"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

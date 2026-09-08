@@ -1,8 +1,33 @@
 {
-  "erzeugt_am": "2026-09-05T02:13:14",
+  "erzeugt_am": "2026-09-08T03:21:36",
   "modus": "live",
   "krise_schwelle_pct": -7.0,
   "lookback_tage": 130,
   "krise_erkannt": false,
-  "indizes": {}
+  "indizes": {
+    "DAX": {
+      "name": "DAX",
+      "symbol": "GDAXI.INDX",
+      "aktuell": 26006.53,
+      "hoch_lookback": 26569.99,
+      "abstand_vom_hoch_pct": -2.12,
+      "in_korrektur": false
+    },
+    "Euro Stoxx 50": {
+      "name": "Euro Stoxx 50",
+      "symbol": "STOXX50E.INDX",
+      "aktuell": 6403.99,
+      "hoch_lookback": 6551.22,
+      "abstand_vom_hoch_pct": -2.25,
+      "in_korrektur": false
+    },
+    "VIX": {
+      "name": "VIX",
+      "symbol": "VIX.INDX",
+      "aktuell": 15.3,
+      "hoch_lookback": 31.05,
+      "abstand_vom_hoch_pct": -50.72,
+      "in_korrektur": false
+    }
+  }
 }

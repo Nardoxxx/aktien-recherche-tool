@@ -5,7 +5,7 @@ name: "Broadcom"
 region: "US"
 cluster: "chip-lieferkette-nvidia"
 score: 47.9
-kurs: 357.16
+kurs: 357.895
 waehrung: "USD"
 kgv: 65.4
 umsatzwachstum_yoy: 32.3
@@ -15,11 +15,11 @@ score_bewertung: 6.9
 score_qualitaet: null
 score_momentum: 10.0
 score_analysten: 92.0
-abstand_52w_hoch_pct: -25.7
+abstand_52w_hoch_pct: -25.6
 swing_kandidat: false
 naechste_earnings_datum: "2026-09-02"
 analysten_kursziel: 527.88
-letzte_aktualisierung: "2026-09-05"
+letzte_aktualisierung: "2026-09-08"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
