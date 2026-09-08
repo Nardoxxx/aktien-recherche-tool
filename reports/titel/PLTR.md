@@ -4,7 +4,7 @@ ticker: "PLTR"
 name: "Palantir Technologies"
 region: "US"
 cluster: null
-score: 55.5
+score: 56.1
 kurs: 174.33
 waehrung: "USD"
 kgv: 148.85
@@ -13,7 +13,7 @@ gewinnwachstum_yoy: 295.2
 score_wachstum: 96.6
 score_bewertung: 0.0
 score_qualitaet: null
-score_momentum: 86.7
+score_momentum: 90.0
 score_analysten: 24.0
 abstand_52w_hoch_pct: -15.9
 swing_kandidat: true
@@ -28,4 +28,4 @@ quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 Automatisch generierte Dashboard-Notiz, wird bei jedem Lauf ueberschrieben. Vollstaendiger Report mit Begruendung: siehe jeweils aktuellster Wochen-/Tagesreport in [[03 Bereiche/Finanzen und Vermögensaufbau/Aktien Reports/]].
 
 > [!tip] Swing-Kandidat
-> -15.9% unter 52-Wochen-Hoch bei weiterhin solidem Score (55.5) - moeglicher Dip-Einstieg, kein Freibrief. Immer erst den aktuellen Report pruefen.
+> -15.9% unter 52-Wochen-Hoch bei weiterhin solidem Score (56.1) - moeglicher Dip-Einstieg, kein Freibrief. Immer erst den aktuellen Report pruefen.

@@ -4,8 +4,8 @@ ticker: "NVDA"
 name: "Nvidia"
 region: "US"
 cluster: "chip-lieferkette-nvidia"
-score: 70.3
-kurs: 230.36
+score: 70.2
+kurs: 225.73
 waehrung: "USD"
 kgv: 34.48
 umsatzwachstum_yoy: 70.7
@@ -13,9 +13,9 @@ gewinnwachstum_yoy: 107.9
 score_wachstum: 93.1
 score_bewertung: 34.5
 score_qualitaet: null
-score_momentum: 83.3
-score_analysten: 72.0
-abstand_52w_hoch_pct: -2.2
+score_momentum: 80.0
+score_analysten: 76.0
+abstand_52w_hoch_pct: -4.1
 swing_kandidat: false
 naechste_earnings_datum: "2026-08-26"
 analysten_kursziel: 302.83
