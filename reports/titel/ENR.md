@@ -4,7 +4,7 @@ ticker: "ENR"
 name: "Siemens Energy"
 region: "EU (Deutschland)"
 cluster: null
-score: 32.3
+score: 32.9
 kurs: 154.34
 waehrung: "EUR"
 kgv: 41
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: null
 score_wachstum: 58.6
 score_bewertung: 24.1
 score_qualitaet: 0.0
-score_momentum: 36.7
+score_momentum: 40.0
 score_analysten: null
 abstand_52w_hoch_pct: -17.7
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: null
-letzte_aktualisierung: "2026-09-08"
+letzte_aktualisierung: "2026-09-09"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

@@ -4,8 +4,8 @@ ticker: "AVGO"
 name: "Broadcom"
 region: "US"
 cluster: "chip-lieferkette-nvidia"
-score: 47.5
-kurs: 368.56
+score: 49.2
+kurs: 364.38
 waehrung: "USD"
 kgv: 65.4
 umsatzwachstum_yoy: 32.3
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: 127.0
 score_wachstum: 86.2
 score_bewertung: 6.9
 score_qualitaet: null
-score_momentum: 13.3
-score_analysten: 84.0
-abstand_52w_hoch_pct: -23.3
+score_momentum: 20.0
+score_analysten: 88.0
+abstand_52w_hoch_pct: -24.2
 swing_kandidat: false
 naechste_earnings_datum: "2026-09-02"
 analysten_kursziel: 527.88
-letzte_aktualisierung: "2026-09-08"
+letzte_aktualisierung: "2026-09-09"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
