@@ -4,7 +4,7 @@ ticker: "RTX"
 name: "RTX Corp (Raytheon)"
 region: "US"
 cluster: "ruestung"
-score: 51.2
+score: 51.8
 kurs: 220.35
 waehrung: "USD"
 kgv: 39.25
@@ -13,7 +13,7 @@ gewinnwachstum_yoy: 25.9
 score_wachstum: 62.1
 score_bewertung: 31.0
 score_qualitaet: null
-score_momentum: 86.7
+score_momentum: 90.0
 score_analysten: 16.0
 abstand_52w_hoch_pct: -2.3
 swing_kandidat: false
