@@ -4,8 +4,8 @@ ticker: "MSFT"
 name: "Microsoft"
 region: "US"
 cluster: null
-score: 64.1
-kurs: 495.63
+score: 64.2
+kurs: 505.41
 waehrung: "USD"
 kgv: 27.6
 umsatzwachstum_yoy: 17.8
@@ -13,13 +13,13 @@ gewinnwachstum_yoy: 31.3
 score_wachstum: 65.5
 score_bewertung: 58.6
 score_qualitaet: null
-score_momentum: 86.7
-score_analysten: 40.0
-abstand_52w_hoch_pct: -7.8
+score_momentum: 90.0
+score_analysten: 36.0
+abstand_52w_hoch_pct: -6.0
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 569.56
-letzte_aktualisierung: "2026-09-11"
+letzte_aktualisierung: "2026-09-15"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 

@@ -4,7 +4,7 @@ ticker: "V"
 name: "Visa"
 region: "US"
 cluster: null
-score: 47.0
+score: 48.0
 kurs: 367.39
 waehrung: "USD"
 kgv: 31.0
@@ -14,12 +14,12 @@ score_wachstum: 48.3
 score_bewertung: 51.7
 score_qualitaet: null
 score_momentum: 46.7
-score_analysten: 32.0
+score_analysten: 40.0
 abstand_52w_hoch_pct: -4.4
 swing_kandidat: false
 naechste_earnings_datum: null
 analysten_kursziel: 416.2
-letzte_aktualisierung: "2026-09-11"
+letzte_aktualisierung: "2026-09-15"
 quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 ---
 
