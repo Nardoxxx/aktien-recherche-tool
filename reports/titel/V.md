@@ -4,7 +4,7 @@ ticker: "V"
 name: "Visa"
 region: "US"
 cluster: null
-score: 48.0
+score: 48.6
 kurs: 367.39
 waehrung: "USD"
 kgv: 31.0
@@ -13,7 +13,7 @@ gewinnwachstum_yoy: 11.4
 score_wachstum: 48.3
 score_bewertung: 51.7
 score_qualitaet: null
-score_momentum: 46.7
+score_momentum: 50.0
 score_analysten: 40.0
 abstand_52w_hoch_pct: -4.4
 swing_kandidat: false

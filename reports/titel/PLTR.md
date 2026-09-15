@@ -5,7 +5,7 @@ name: "Palantir Technologies"
 region: "US"
 cluster: null
 score: 55.5
-kurs: 173.31
+kurs: 172.56
 waehrung: "USD"
 kgv: 148.85
 umsatzwachstum_yoy: 78.9
@@ -15,7 +15,7 @@ score_bewertung: 0.0
 score_qualitaet: null
 score_momentum: 86.7
 score_analysten: 24.0
-abstand_52w_hoch_pct: -16.3
+abstand_52w_hoch_pct: -16.7
 swing_kandidat: true
 naechste_earnings_datum: null
 analysten_kursziel: 189.9
@@ -28,4 +28,4 @@ quelle: "eodhd-free+recherche (diverse Quellen, 17.08.2026)"
 Automatisch generierte Dashboard-Notiz, wird bei jedem Lauf ueberschrieben. Vollstaendiger Report mit Begruendung: siehe jeweils aktuellster Wochen-/Tagesreport in [[03 Bereiche/Finanzen und Vermögensaufbau/Aktien Reports/]].
 
 > [!tip] Swing-Kandidat
-> -16.3% unter 52-Wochen-Hoch bei weiterhin solidem Score (55.5) - moeglicher Dip-Einstieg, kein Freibrief. Immer erst den aktuellen Report pruefen.
+> -16.7% unter 52-Wochen-Hoch bei weiterhin solidem Score (55.5) - moeglicher Dip-Einstieg, kein Freibrief. Immer erst den aktuellen Report pruefen.
